@@ -53,7 +53,34 @@ public class MagicItemsCmd implements CommandExecutor {
 									sender.sendMessage(ChatColor.GOLD + "Enchants on Magic Tools: " + ChatColor.GREEN + " ON" + ChatColor.GOLD + "!");
 								}
 							}
-
+							
+							if (args[1].equalsIgnoreCase("status")) {
+								if (enchantstoggle) {
+									enchantstoggle = false;
+									sender.sendMessage(ChatColor.GOLD + "Enchants on Magic Tools: " + ChatColor.RED + " OFF" + ChatColor.GOLD + "!");
+								} else {
+									enchantstoggle = true;
+									sender.sendMessage(ChatColor.GOLD + "Enchants on Magic Tools: " + ChatColor.GREEN + " ON" + ChatColor.GOLD + "!");
+								}
+							}
+							
+							if (args[1].equalsIgnoreCase("toggle") || args[1].equalsIgnoreCase("status")) {
+								sender.sendMessage(ChatColor.RED + "Invalid arguments.");
+								sender.sendMessage(ChatColor.GREEN + "Usage:");
+								sender.sendMessage(ChatColor.GREEN + "- /magicitems enchanst ?");
+								sender.sendMessage(ChatColor.GREEN + "- /magicitems enchants help");
+								sender.sendMessage(ChatColor.GREEN + "- /magicitems enchants toggle");
+								sender.sendMessage(ChatColor.GREEN + "- /magicitems enchants status");
+							}
+							if (args[1].equalsIgnoreCase("?") || args[1].equalsIgnoreCase("help")) {
+								sender.sendMessage(ChatColor.GREEN + "Usage:");
+								sender.sendMessage(ChatColor.GREEN + "- /magicitems enchants ?");
+								sender.sendMessage(ChatColor.GREEN + "- /magicitems enchants help");
+								sender.sendMessage(ChatColor.GREEN + "- /magicitems enchants toggle");
+								sender.sendMessage(ChatColor.GREEN + "- /magicitems encahnts status");
+							}
+						}
+						if (args[0].equalsIgnoreCase("attributes")) {
 							if (args[1].equalsIgnoreCase("toggle")) {
 								if (attributestoggle) {
 									attributestoggle = false;
@@ -61,7 +88,33 @@ public class MagicItemsCmd implements CommandExecutor {
 								} else {
 									attributestoggle = true;
 									sender.sendMessage(ChatColor.GOLD + "Attributes on Magic Tools: " + ChatColor.GREEN + " ON" + ChatColor.GOLD + "!");
+								}								
+							}
+							
+							if (args[1].equalsIgnoreCase("status")) {
+								if (attributestoggle) {
+									attributestoggle = false;
+									sender.sendMessage(ChatColor.GOLD + "Attributes on Magic Tools: " + ChatColor.RED + " OFF" + ChatColor.GOLD + "!");
+								} else {
+									attributestoggle = true;
+									sender.sendMessage(ChatColor.GOLD + "Attributes on Magic Tools: " + ChatColor.GREEN + " ON" + ChatColor.GOLD + "!");
 								}
+							}
+							
+							if (args[1].equalsIgnoreCase("toggle") || args[1].equalsIgnoreCase("status")) {
+								sender.sendMessage(ChatColor.RED + "Invalid arguments.");
+								sender.sendMessage(ChatColor.GREEN + "Usage:");
+								sender.sendMessage(ChatColor.GREEN + "- /magicitems attributes ?");
+								sender.sendMessage(ChatColor.GREEN + "- /magicitems attributes help");
+								sender.sendMessage(ChatColor.GREEN + "- /magicitems attributes toggle");
+								sender.sendMessage(ChatColor.GREEN + "- /magicitems attributes status");
+							}
+							if (args[1].equalsIgnoreCase("?") || args[1].equalsIgnoreCase("help")) {
+								sender.sendMessage(ChatColor.GREEN + "Usage:");
+								sender.sendMessage(ChatColor.GREEN + "- /magicitems attributes ?");
+								sender.sendMessage(ChatColor.GREEN + "- /magicitems attributes help");
+								sender.sendMessage(ChatColor.GREEN + "- /magicitems attributes toggle");
+								sender.sendMessage(ChatColor.GREEN + "- /magicitems attributes status");
 							}
 						}
 					}
