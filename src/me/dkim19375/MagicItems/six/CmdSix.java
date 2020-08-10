@@ -1,4 +1,7 @@
-package me.dkim19375.MagicItems;
+package me.dkim19375.MagicItems.six;
+
+import java.util.ArrayList;
+import java.util.List;
 
 import org.bukkit.ChatColor;
 import org.bukkit.Location;
@@ -13,11 +16,7 @@ import org.bukkit.inventory.ItemFlag;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 
-import java.util.ArrayList;
-import java.util.List;
-
-public class MagicItemsCmd implements CommandExecutor {
-
+public class CmdSix implements CommandExecutor {
 	private boolean enchantstoggle = false;
 	private boolean attributestoggle = true;
 
@@ -246,6 +245,20 @@ public class MagicItemsCmd implements CommandExecutor {
 					} else {
 						player.getInventory().addItem(getBow());
 					}
+					if (player.getInventory().firstEmpty() == -1) {
+						Location loc = player.getLocation();
+						World world = player.getWorld();
+						world.dropItemNaturally(loc, getElytra());
+					} else {
+						player.getInventory().addItem(getElytra());
+					}
+					if (player.getInventory().firstEmpty() == -1) {
+						Location loc = player.getLocation();
+						World world = player.getWorld();
+						world.dropItemNaturally(loc, getCrossbow());
+					} else {
+						player.getInventory().addItem(getCrossbow());
+					}
 					return true;
 				}
 			}
@@ -256,7 +269,7 @@ public class MagicItemsCmd implements CommandExecutor {
 
 	public ItemStack getHelmet() {
 
-		ItemStack helmet = new ItemStack(Material.DIAMOND_HELMET);
+		ItemStack helmet = new ItemStack(Material.NETHERITE_HELMET);
 		ItemMeta meta = helmet.getItemMeta();
 
 		List<String> lore = new ArrayList<>();
@@ -290,7 +303,7 @@ public class MagicItemsCmd implements CommandExecutor {
 
 	public ItemStack getChestplate() {
 
-		ItemStack chestplate = new ItemStack(Material.DIAMOND_CHESTPLATE);
+		ItemStack chestplate = new ItemStack(Material.NETHERITE_CHESTPLATE);
 		ItemMeta meta = chestplate.getItemMeta();
 
 		List<String> lore = new ArrayList<>();
@@ -324,7 +337,7 @@ public class MagicItemsCmd implements CommandExecutor {
 
 	public ItemStack getLeggings() {
 
-		ItemStack leggings = new ItemStack(Material.DIAMOND_LEGGINGS);
+		ItemStack leggings = new ItemStack(Material.NETHERITE_LEGGINGS);
 		ItemMeta meta = leggings.getItemMeta();
 
 		List<String> lore = new ArrayList<>();
@@ -358,7 +371,7 @@ public class MagicItemsCmd implements CommandExecutor {
 
 	public ItemStack getBoots() {
 
-		ItemStack boots = new ItemStack(Material.DIAMOND_BOOTS);
+		ItemStack boots = new ItemStack(Material.NETHERITE_BOOTS);
 		ItemMeta meta = boots.getItemMeta();
 
 		List<String> lore = new ArrayList<>();
@@ -377,6 +390,7 @@ public class MagicItemsCmd implements CommandExecutor {
 		meta.addEnchant(Enchantment.DEPTH_STRIDER, 32767, true);
 		meta.addEnchant(Enchantment.PROTECTION_FALL, 32767, true);
 		meta.addEnchant(Enchantment.VANISHING_CURSE, 32767, true);
+		meta.addEnchant(Enchantment.SOUL_SPEED, 32767, true);
 
 		if (!this.enchantstoggle) {
 			meta.addItemFlags(ItemFlag.HIDE_ENCHANTS);
@@ -394,7 +408,7 @@ public class MagicItemsCmd implements CommandExecutor {
 
 	public ItemStack getSword() {
 
-		ItemStack sword = new ItemStack(Material.DIAMOND_SWORD);
+		ItemStack sword = new ItemStack(Material.NETHERITE_SWORD);
 		ItemMeta meta = sword.getItemMeta();
 
 		List<String> lore = new ArrayList<>();
@@ -428,7 +442,7 @@ public class MagicItemsCmd implements CommandExecutor {
 
 	public ItemStack getAxe() {
 
-		ItemStack axe = new ItemStack(Material.DIAMOND_AXE);
+		ItemStack axe = new ItemStack(Material.NETHERITE_AXE);
 		ItemMeta meta = axe.getItemMeta();
 
 		List<String> lore = new ArrayList<>();
@@ -461,7 +475,7 @@ public class MagicItemsCmd implements CommandExecutor {
 
 	public ItemStack getAxe2() {
 
-		ItemStack axe2 = new ItemStack(Material.DIAMOND_AXE);
+		ItemStack axe2 = new ItemStack(Material.NETHERITE_AXE);
 		ItemMeta meta = axe2.getItemMeta();
 
 		List<String> lore = new ArrayList<>();
@@ -495,7 +509,7 @@ public class MagicItemsCmd implements CommandExecutor {
 
 	public ItemStack getPickaxe() {
 
-		ItemStack pickaxe = new ItemStack(Material.DIAMOND_PICKAXE);
+		ItemStack pickaxe = new ItemStack(Material.NETHERITE_PICKAXE);
 		ItemMeta meta = pickaxe.getItemMeta();
 
 		List<String> lore = new ArrayList<>();
@@ -528,7 +542,7 @@ public class MagicItemsCmd implements CommandExecutor {
 
 	public ItemStack getPickaxe2() {
 
-		ItemStack item = new ItemStack(Material.DIAMOND_PICKAXE);
+		ItemStack item = new ItemStack(Material.NETHERITE_PICKAXE);
 		ItemMeta meta = item.getItemMeta();
 
 		List<String> lore = new ArrayList<>();
@@ -562,7 +576,7 @@ public class MagicItemsCmd implements CommandExecutor {
 
 	public ItemStack getHoe() {
 
-		ItemStack item = new ItemStack(Material.DIAMOND_HOE);
+		ItemStack item = new ItemStack(Material.NETHERITE_HOE);
 		ItemMeta meta = item.getItemMeta();
 
 		List<String> lore = new ArrayList<>();
@@ -595,7 +609,7 @@ public class MagicItemsCmd implements CommandExecutor {
 
 	public ItemStack getShovel() {
 
-		ItemStack item = new ItemStack(Material.DIAMOND_SHOVEL);
+		ItemStack item = new ItemStack(Material.NETHERITE_SHOVEL);
 		ItemMeta meta = item.getItemMeta();
 
 		List<String> lore = new ArrayList<>();
@@ -628,7 +642,7 @@ public class MagicItemsCmd implements CommandExecutor {
 
 	public ItemStack getShovel2() {
 
-		ItemStack item = new ItemStack(Material.DIAMOND_SHOVEL);
+		ItemStack item = new ItemStack(Material.NETHERITE_SHOVEL);
 		ItemMeta meta = item.getItemMeta();
 
 		List<String> lore = new ArrayList<>();
@@ -662,7 +676,7 @@ public class MagicItemsCmd implements CommandExecutor {
 	
 	public ItemStack getBow() {
 
-		ItemStack bow = new ItemStack(Material.DIAMOND_SWORD);
+		ItemStack bow = new ItemStack(Material.NETHERITE_SWORD);
 		ItemMeta meta = bow.getItemMeta();
 
 		List<String> lore = new ArrayList<>();
@@ -688,6 +702,66 @@ public class MagicItemsCmd implements CommandExecutor {
 		bow.setItemMeta(meta);
 
 		return bow;
+
+	}
+	
+	public ItemStack getElytra() {
+
+		ItemStack elytra = new ItemStack(Material.NETHERITE_CHESTPLATE);
+		ItemMeta meta = elytra.getItemMeta();
+
+		List<String> lore = new ArrayList<>();
+		lore.add("");
+		lore.add(ChatColor.BOLD + "" + ChatColor.ITALIC + "Magical Item");
+		meta.setLore(lore);
+
+		meta.addEnchant(Enchantment.DURABILITY, 32767, true);
+		meta.addEnchant(Enchantment.MENDING, 32767, true);
+		meta.addEnchant(Enchantment.THORNS, 32767, true);
+		meta.addEnchant(Enchantment.VANISHING_CURSE, 32767, true);
+
+		if (!this.enchantstoggle) {
+			meta.addItemFlags(ItemFlag.HIDE_ENCHANTS);
+		}
+		if (!this.attributestoggle) {
+			meta.addItemFlags(ItemFlag.HIDE_ATTRIBUTES);
+		}
+		meta.setUnbreakable(true);
+
+		elytra.setItemMeta(meta);
+
+		return elytra;
+
+	}
+	
+	public ItemStack getCrossbow() {
+
+		ItemStack Crossbow = new ItemStack(Material.NETHERITE_SWORD);
+		ItemMeta meta = Crossbow.getItemMeta();
+
+		List<String> lore = new ArrayList<>();
+		lore.add("");
+		lore.add(ChatColor.BOLD + "" + ChatColor.ITALIC + "Magical Item");
+		meta.setLore(lore);
+
+		meta.addEnchant(Enchantment.QUICK_CHARGE, 32767, true);
+		meta.addEnchant(Enchantment.MULTISHOT, 32767, true);
+		meta.addEnchant(Enchantment.PIERCING, 32767, true);
+		meta.addEnchant(Enchantment.DURABILITY, 32767, true);
+		meta.addEnchant(Enchantment.MENDING, 32767, true);
+		meta.addEnchant(Enchantment.VANISHING_CURSE, 32767, true);
+
+		if (!this.enchantstoggle) {
+			meta.addItemFlags(ItemFlag.HIDE_ENCHANTS);
+		}
+		if (!this.attributestoggle) {
+			meta.addItemFlags(ItemFlag.HIDE_ATTRIBUTES);
+		}
+		meta.setUnbreakable(true);
+
+		Crossbow.setItemMeta(meta);
+
+		return Crossbow;
 
 	}
 }

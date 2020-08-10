@@ -1,4 +1,7 @@
-package me.dkim19375.MagicItems;
+package me.dkim19375.MagicItems.two;
+
+import java.util.ArrayList;
+import java.util.List;
 
 import org.bukkit.ChatColor;
 import org.bukkit.Location;
@@ -13,11 +16,7 @@ import org.bukkit.inventory.ItemFlag;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 
-import java.util.ArrayList;
-import java.util.List;
-
-public class MagicItemsCmd implements CommandExecutor {
-
+public class CmdTwo implements CommandExecutor {
 	private boolean enchantstoggle = false;
 	private boolean attributestoggle = true;
 
