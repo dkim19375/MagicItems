@@ -9,12 +9,8 @@ public class Main extends JavaPlugin {
 
 		System.out.println("Starting up Magic Items!");
 
-		System.out.println("Setting up variables");
-		System.out.println("Done setting up variables");
-
-		System.out.println("Setting up /magicitems command");
+		System.out.println("Starting up!");
 		this.getCommand("magicitems").setExecutor(new MagicItemsCmd());
-		System.out.println("Done setting up /magicitems command");
 
 		System.out.println("Done! Enjoy the plugin!");
 
