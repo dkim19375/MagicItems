@@ -1,4 +1,4 @@
-package me.dkim19375.MagicItems.six;
+package me.dkim19375.MagicItems.three;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -7,8 +7,7 @@ import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
 import org.bukkit.command.TabCompleter;
 
-public class SixTab implements TabCompleter {
-	
+public class ThreeTab implements TabCompleter {
 	List<String> arguments = new ArrayList<String>();
 	
 	public List<String> onTabComplete(CommandSender sender, Command cmd, String label, String[] args) {

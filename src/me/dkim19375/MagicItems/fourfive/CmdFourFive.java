@@ -1,4 +1,4 @@
-package me.dkim19375.MagicItems.six;
+package me.dkim19375.MagicItems.fourfive;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -16,7 +16,7 @@ import org.bukkit.inventory.ItemFlag;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 
-public class CmdSix implements CommandExecutor {
+public class CmdFourFive implements CommandExecutor {
 	private boolean enchantstoggle = false;
 	private boolean attributestoggle = true;
 	private boolean vanishingtoggle = true;
@@ -477,7 +477,7 @@ public class CmdSix implements CommandExecutor {
 		meta.addEnchant(Enchantment.OXYGEN, 32767, true);
 		meta.addEnchant(Enchantment.THORNS, 32767, true);
 		meta.addEnchant(Enchantment.DEPTH_STRIDER, 32767, true);
-		meta.addEnchant(Enchantment.PROTECTION_FALL, 32767, true);
+		meta.addEnchant(Enchantment.PROTECTION_FALL, 32767, true);		
 		if (vanishingtoggle) {
 			meta.addEnchant(Enchantment.VANISHING_CURSE, 32767, true);
 		}	
