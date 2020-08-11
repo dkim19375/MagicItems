@@ -1,0 +1,45 @@
+Reload:
+  # You can use the § symbol to use different colors.
+  # The message will show in-game and in console
+  # Visit https://minecraft.gamepedia.com/Formatting_codes for the color codes.
+  - message: §6§lReloading MagicItems!
+  - reloaded-message: §a§lSuccessfully Reloaded MagicItems!
+
+Enchant Levels: #Max: 32767 or it will be a negative.
+  - protection: 32767
+  - fire_protection: 32767
+  - feather_falling: 32767
+  - blast_protection: 32767
+  - projectile_protection: 32767
+  - respiration: 32767
+  - aqua_affinity: 32767
+  - thorns: 32767
+  - depth_strider: 32767
+  - frost_walker: 32767
+  - binding_curse: 32767
+  - sharpness: 32767
+  - smite: 32767
+  - bane_of_arthropods: 32767
+  - knockback: 0
+  - fire_aspect: 32767
+  - looting: 1000
+  - sweeping: 32767
+  - efficiency: 32767
+  - silk_touch: 32767
+  - unbreaking: 32767
+  - fortune: 32767
+  - power: 32767
+  - punch: 0
+  - flame: 32767
+  - infinity: 32767
+  - luck_of_the_sea: 32767
+  - lure: 32767
+  - mending: 32767
+  - vanishing_curse: 32767
+  - channeling: 32767
+  - impaling: 32767
+  - loyalty: 32767
+  - multishot: 32767
+  - piercing: 32767
+  - quick_charge: 32767
+  - soul_speed: 10
