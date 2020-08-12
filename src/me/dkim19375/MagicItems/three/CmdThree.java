@@ -16,8 +16,6 @@ import org.bukkit.inventory.ItemFlag;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 
-import me.dkim19375.MagicItems.Main;
-
 public class CmdThree implements CommandExecutor {
 	private boolean enchantstoggle = false;
 	private boolean attributestoggle = true;
@@ -288,6 +286,8 @@ public class CmdThree implements CommandExecutor {
 					sender.sendMessage(ChatColor.GREEN + "- /magicitems give");
 					sender.sendMessage(ChatColor.GREEN + "- /magicitems enchants");
 					sender.sendMessage(ChatColor.GREEN + "- /magicitems attributes");
+					sender.sendMessage(ChatColor.GREEN + "- /magicitems vanishing");
+					sender.sendMessage(ChatColor.GREEN + "- /magicitems binding");
 					return true;
 				}
 				if (args[0].equalsIgnoreCase("give")) {
@@ -391,12 +391,30 @@ public class CmdThree implements CommandExecutor {
 						} else {
 							player.getInventory().addItem(getBow());
 						}
+						for (int i = 0; i < 64; i++) {
+							if (player.getInventory().firstEmpty() == -1) {
+								Location loc = player.getLocation();
+								World world = player.getWorld();
+								world.dropItemNaturally(loc, getArrows());
+							} else {
+								player.getInventory().addItem(getArrows());
+							}
+						}
 						if (player.getInventory().firstEmpty() == -1) {
 							Location loc = player.getLocation();
 							World world = player.getWorld();
 							world.dropItemNaturally(loc, getElytra());
 						} else {
 							player.getInventory().addItem(getElytra());
+						}
+						for (int i = 0; i < 64; i++) {
+							if (player.getInventory().firstEmpty() == -1) {
+								Location loc = player.getLocation();
+								World world = player.getWorld();
+								world.dropItemNaturally(loc, getRockets());
+							} else {
+								player.getInventory().addItem(getRockets());
+							}
 						}
 						return true;
 					}
@@ -417,20 +435,20 @@ public class CmdThree implements CommandExecutor {
 		lore.add(ChatColor.BOLD + "" + ChatColor.ITALIC + "Magical Item");
 		meta.setLore(lore);
 
-		meta.addEnchant(Enchantment.WATER_WORKER, Main.aqua_affinity, true);
-		meta.addEnchant(Enchantment.PROTECTION_EXPLOSIONS, Main.blast_protection, true);
-		meta.addEnchant(Enchantment.PROTECTION_FIRE, Main.fire_protection, true);
-		meta.addEnchant(Enchantment.PROTECTION_PROJECTILE, Main.projectile_protection, true);
-		meta.addEnchant(Enchantment.PROTECTION_ENVIRONMENTAL, Main.protection, true);
-		meta.addEnchant(Enchantment.MENDING, Main.mending, true);
-		meta.addEnchant(Enchantment.OXYGEN, Main.respiration, true);
-		meta.addEnchant(Enchantment.THORNS, Main.thorns, true);
+		meta.addEnchant(Enchantment.WATER_WORKER, 32767, true);
+		meta.addEnchant(Enchantment.PROTECTION_EXPLOSIONS, 32767, true);
+		meta.addEnchant(Enchantment.PROTECTION_FIRE, 32767, true);
+		meta.addEnchant(Enchantment.PROTECTION_PROJECTILE, 32767, true);
+		meta.addEnchant(Enchantment.PROTECTION_ENVIRONMENTAL, 32767, true);
+		meta.addEnchant(Enchantment.MENDING, 32767, true);
+		meta.addEnchant(Enchantment.OXYGEN, 32767, true);
+		meta.addEnchant(Enchantment.THORNS, 32767, true);
 		
 		if (vanishingtoggle) {
-			meta.addEnchant(Enchantment.VANISHING_CURSE, Main.vanishing_curse, true);
+			meta.addEnchant(Enchantment.VANISHING_CURSE, 32767, true);
 		}	
 		if (bindingtoggle) {
-			meta.addEnchant(Enchantment.BINDING_CURSE, Main.binding_curse, true);
+			meta.addEnchant(Enchantment.BINDING_CURSE, 32767, true);
 		}
 		if (!this.enchantstoggle) {
 			meta.addItemFlags(ItemFlag.HIDE_ENCHANTS);
@@ -456,20 +474,20 @@ public class CmdThree implements CommandExecutor {
 		lore.add(ChatColor.BOLD + "" + ChatColor.ITALIC + "Magical Item");
 		meta.setLore(lore);
 
-		meta.addEnchant(Enchantment.WATER_WORKER, Main.aqua_affinity, true);
-		meta.addEnchant(Enchantment.PROTECTION_EXPLOSIONS, Main.blast_protection, true);
-		meta.addEnchant(Enchantment.PROTECTION_FIRE, Main.fire_protection, true);
-		meta.addEnchant(Enchantment.PROTECTION_PROJECTILE, Main.projectile_protection, true);
-		meta.addEnchant(Enchantment.PROTECTION_ENVIRONMENTAL, Main.protection, true);
-		meta.addEnchant(Enchantment.MENDING, Main.mending, true);
-		meta.addEnchant(Enchantment.OXYGEN, Main.respiration, true);
-		meta.addEnchant(Enchantment.THORNS, Main.thorns, true);
+		meta.addEnchant(Enchantment.WATER_WORKER, 32767, true);
+		meta.addEnchant(Enchantment.PROTECTION_EXPLOSIONS, 32767, true);
+		meta.addEnchant(Enchantment.PROTECTION_FIRE, 32767, true);
+		meta.addEnchant(Enchantment.PROTECTION_PROJECTILE, 32767, true);
+		meta.addEnchant(Enchantment.PROTECTION_ENVIRONMENTAL, 32767, true);
+		meta.addEnchant(Enchantment.MENDING, 32767, true);
+		meta.addEnchant(Enchantment.OXYGEN, 32767, true);
+		meta.addEnchant(Enchantment.THORNS, 32767, true);
 		
 		if (vanishingtoggle) {
-			meta.addEnchant(Enchantment.VANISHING_CURSE, Main.vanishing_curse, true);
+			meta.addEnchant(Enchantment.VANISHING_CURSE, 32767, true);
 		}
 		if (bindingtoggle) {
-			meta.addEnchant(Enchantment.BINDING_CURSE, Main.binding_curse, true);
+			meta.addEnchant(Enchantment.BINDING_CURSE, 32767, true);
 		}
 		if (!this.enchantstoggle) {
 			meta.addItemFlags(ItemFlag.HIDE_ENCHANTS);
@@ -495,20 +513,20 @@ public class CmdThree implements CommandExecutor {
 		lore.add(ChatColor.BOLD + "" + ChatColor.ITALIC + "Magical Item");
 		meta.setLore(lore);
 
-		meta.addEnchant(Enchantment.WATER_WORKER, Main.aqua_affinity, true);
-		meta.addEnchant(Enchantment.PROTECTION_EXPLOSIONS, Main.blast_protection, true);
-		meta.addEnchant(Enchantment.PROTECTION_FIRE, Main.fire_protection, true);
-		meta.addEnchant(Enchantment.PROTECTION_PROJECTILE, Main.projectile_protection, true);
-		meta.addEnchant(Enchantment.PROTECTION_ENVIRONMENTAL, Main.protection, true);
-		meta.addEnchant(Enchantment.MENDING, Main.mending, true);
-		meta.addEnchant(Enchantment.OXYGEN, Main.respiration, true);
-		meta.addEnchant(Enchantment.THORNS, Main.thorns, true);
+		meta.addEnchant(Enchantment.WATER_WORKER, 32767, true);
+		meta.addEnchant(Enchantment.PROTECTION_EXPLOSIONS, 32767, true);
+		meta.addEnchant(Enchantment.PROTECTION_FIRE, 32767, true);
+		meta.addEnchant(Enchantment.PROTECTION_PROJECTILE, 32767, true);
+		meta.addEnchant(Enchantment.PROTECTION_ENVIRONMENTAL, 32767, true);
+		meta.addEnchant(Enchantment.MENDING, 32767, true);
+		meta.addEnchant(Enchantment.OXYGEN, 32767, true);
+		meta.addEnchant(Enchantment.THORNS, 32767, true);
 		
 		if (vanishingtoggle) {
-			meta.addEnchant(Enchantment.VANISHING_CURSE, Main.vanishing_curse, true);
+			meta.addEnchant(Enchantment.VANISHING_CURSE, 32767, true);
 		}	
 		if (bindingtoggle) {
-			meta.addEnchant(Enchantment.BINDING_CURSE, Main.binding_curse, true);
+			meta.addEnchant(Enchantment.BINDING_CURSE, 32767, true);
 		}
 		if (!this.enchantstoggle) {
 			meta.addItemFlags(ItemFlag.HIDE_ENCHANTS);
@@ -534,21 +552,21 @@ public class CmdThree implements CommandExecutor {
 		lore.add(ChatColor.BOLD + "" + ChatColor.ITALIC + "Magical Item");
 		meta.setLore(lore);
 
-		meta.addEnchant(Enchantment.WATER_WORKER, Main.aqua_affinity, true);
-		meta.addEnchant(Enchantment.PROTECTION_EXPLOSIONS, Main.blast_protection, true);
-		meta.addEnchant(Enchantment.PROTECTION_FIRE, Main.fire_protection, true);
-		meta.addEnchant(Enchantment.PROTECTION_PROJECTILE, Main.projectile_protection, true);
-		meta.addEnchant(Enchantment.PROTECTION_ENVIRONMENTAL, Main.protection, true);
-		meta.addEnchant(Enchantment.MENDING, Main.mending, true);
-		meta.addEnchant(Enchantment.OXYGEN, Main.respiration, true);
-		meta.addEnchant(Enchantment.THORNS, Main.thorns, true);
-		meta.addEnchant(Enchantment.DEPTH_STRIDER, Main.depth_strider, true);
-		meta.addEnchant(Enchantment.PROTECTION_FALL, Main.feather_falling, true);
+		meta.addEnchant(Enchantment.WATER_WORKER, 32767, true);
+		meta.addEnchant(Enchantment.PROTECTION_EXPLOSIONS, 32767, true);
+		meta.addEnchant(Enchantment.PROTECTION_FIRE, 32767, true);
+		meta.addEnchant(Enchantment.PROTECTION_PROJECTILE, 32767, true);
+		meta.addEnchant(Enchantment.PROTECTION_ENVIRONMENTAL, 32767, true);
+		meta.addEnchant(Enchantment.MENDING, 32767, true);
+		meta.addEnchant(Enchantment.OXYGEN, 32767, true);
+		meta.addEnchant(Enchantment.THORNS, 32767, true);
+		meta.addEnchant(Enchantment.DEPTH_STRIDER, 32767, true);
+		meta.addEnchant(Enchantment.PROTECTION_FALL, 32767, true);
 		if (vanishingtoggle) {
-			meta.addEnchant(Enchantment.VANISHING_CURSE, Main.vanishing_curse, true);
+			meta.addEnchant(Enchantment.VANISHING_CURSE, 32767, true);
 		}
 		if (bindingtoggle) {
-			meta.addEnchant(Enchantment.BINDING_CURSE, Main.binding_curse, true);
+			meta.addEnchant(Enchantment.BINDING_CURSE, 32767, true);
 		}
 		if (!this.enchantstoggle) {
 			meta.addItemFlags(ItemFlag.HIDE_ENCHANTS);
@@ -574,20 +592,20 @@ public class CmdThree implements CommandExecutor {
 		lore.add(ChatColor.BOLD + "" + ChatColor.ITALIC + "Magical Item");
 		meta.setLore(lore);
 
-		meta.addEnchant(Enchantment.DAMAGE_ARTHROPODS, Main.bane_of_arthropods, true);
-		meta.addEnchant(Enchantment.FIRE_ASPECT, Main.fire_aspect, true);
-		meta.addEnchant(Enchantment.LOOT_BONUS_MOBS, Main.looting, true);
-		meta.addEnchant(Enchantment.MENDING, Main.mending, true);
-		meta.addEnchant(Enchantment.DAMAGE_ALL, Main.sharpness, true);
-		meta.addEnchant(Enchantment.DAMAGE_UNDEAD, Main.smite, true);
-		meta.addEnchant(Enchantment.DURABILITY, Main.unbreaking, true);
-		meta.addEnchant(Enchantment.SWEEPING_EDGE, Main.sweeping, true);
+		meta.addEnchant(Enchantment.DAMAGE_ARTHROPODS, 32767, true);
+		meta.addEnchant(Enchantment.FIRE_ASPECT, 32767, true);
+		meta.addEnchant(Enchantment.LOOT_BONUS_MOBS, 1000, true);
+		meta.addEnchant(Enchantment.MENDING, 32767, true);
+		meta.addEnchant(Enchantment.DAMAGE_ALL, 32767, true);
+		meta.addEnchant(Enchantment.DAMAGE_UNDEAD, 32767, true);
+		meta.addEnchant(Enchantment.DURABILITY, 32767, true);
+		meta.addEnchant(Enchantment.SWEEPING_EDGE, 32767, true);
 		
 		if (vanishingtoggle) {
-			meta.addEnchant(Enchantment.VANISHING_CURSE, Main.vanishing_curse, true);
+			meta.addEnchant(Enchantment.VANISHING_CURSE, 32767, true);
 		}
 		if (bindingtoggle) {
-			meta.addEnchant(Enchantment.BINDING_CURSE, Main.binding_curse, true);
+			meta.addEnchant(Enchantment.BINDING_CURSE, 32767, true);
 		}	
 		if (!this.enchantstoggle) {
 			meta.addItemFlags(ItemFlag.HIDE_ENCHANTS);
@@ -613,19 +631,19 @@ public class CmdThree implements CommandExecutor {
 		lore.add(ChatColor.BOLD + "" + ChatColor.ITALIC + "Magical Item");
 		meta.setLore(lore);
 
-		meta.addEnchant(Enchantment.DAMAGE_ARTHROPODS, Main.bane_of_arthropods, true);
-		meta.addEnchant(Enchantment.LOOT_BONUS_BLOCKS, Main.fortune, true);
-		meta.addEnchant(Enchantment.MENDING, Main.mending, true);
-		meta.addEnchant(Enchantment.DAMAGE_ALL, Main.sharpness, true);
-		meta.addEnchant(Enchantment.DAMAGE_UNDEAD, Main.smite, true);
-		meta.addEnchant(Enchantment.DURABILITY, Main.unbreaking, true);
-		meta.addEnchant(Enchantment.DIG_SPEED, Main.efficiency, true);
+		meta.addEnchant(Enchantment.DAMAGE_ARTHROPODS, 32767, true);
+		meta.addEnchant(Enchantment.LOOT_BONUS_BLOCKS, 1000, true);
+		meta.addEnchant(Enchantment.MENDING, 32767, true);
+		meta.addEnchant(Enchantment.DAMAGE_ALL, 32767, true);
+		meta.addEnchant(Enchantment.DAMAGE_UNDEAD, 32767, true);
+		meta.addEnchant(Enchantment.DURABILITY, 32767, true);
+		meta.addEnchant(Enchantment.DIG_SPEED, 32767, true);
 		
 		if (vanishingtoggle) {
-			meta.addEnchant(Enchantment.VANISHING_CURSE, Main.vanishing_curse, true);
+			meta.addEnchant(Enchantment.VANISHING_CURSE, 32767, true);
 		}
 		if (bindingtoggle) {
-			meta.addEnchant(Enchantment.BINDING_CURSE, Main.binding_curse, true);
+			meta.addEnchant(Enchantment.BINDING_CURSE, 32767, true);
 		}	
 		if (!this.enchantstoggle) {
 			meta.addItemFlags(ItemFlag.HIDE_ENCHANTS);
@@ -651,20 +669,20 @@ public class CmdThree implements CommandExecutor {
 		lore.add(ChatColor.BOLD + "" + ChatColor.ITALIC + "Magical Item");
 		meta.setLore(lore);
 
-		meta.addEnchant(Enchantment.DAMAGE_ARTHROPODS, Main.bane_of_arthropods, true);
-		meta.addEnchant(Enchantment.LOOT_BONUS_BLOCKS, Main.fortune, true);
-		meta.addEnchant(Enchantment.MENDING, Main.mending, true);
-		meta.addEnchant(Enchantment.DAMAGE_ALL, Main.sharpness, true);
-		meta.addEnchant(Enchantment.DAMAGE_UNDEAD, Main.smite, true);
-		meta.addEnchant(Enchantment.DURABILITY, Main.unbreaking, true);
-		meta.addEnchant(Enchantment.DIG_SPEED, Main.efficiency, true);
-		meta.addEnchant(Enchantment.SILK_TOUCH, Main.silk_touch, true);
+		meta.addEnchant(Enchantment.DAMAGE_ARTHROPODS, 32767, true);
+		meta.addEnchant(Enchantment.LOOT_BONUS_BLOCKS, 1000, true);
+		meta.addEnchant(Enchantment.MENDING, 32767, true);
+		meta.addEnchant(Enchantment.DAMAGE_ALL, 32767, true);
+		meta.addEnchant(Enchantment.DAMAGE_UNDEAD, 32767, true);
+		meta.addEnchant(Enchantment.DURABILITY, 32767, true);
+		meta.addEnchant(Enchantment.DIG_SPEED, 32767, true);
+		meta.addEnchant(Enchantment.SILK_TOUCH, 32767, true);
 		
 		if (vanishingtoggle) {
-			meta.addEnchant(Enchantment.VANISHING_CURSE, Main.vanishing_curse, true);
+			meta.addEnchant(Enchantment.VANISHING_CURSE, 32767, true);
 		}
 		if (bindingtoggle) {
-			meta.addEnchant(Enchantment.BINDING_CURSE, Main.binding_curse, true);
+			meta.addEnchant(Enchantment.BINDING_CURSE, 32767, true);
 		}	
 		if (!this.enchantstoggle) {
 			meta.addItemFlags(ItemFlag.HIDE_ENCHANTS);
@@ -690,19 +708,19 @@ public class CmdThree implements CommandExecutor {
 		lore.add(ChatColor.BOLD + "" + ChatColor.ITALIC + "Magical Item");
 		meta.setLore(lore);
 
-		meta.addEnchant(Enchantment.DAMAGE_ARTHROPODS, Main.bane_of_arthropods, true);
-		meta.addEnchant(Enchantment.LOOT_BONUS_BLOCKS, Main.fortune, true);
-		meta.addEnchant(Enchantment.MENDING, Main.mending, true);
-		meta.addEnchant(Enchantment.DAMAGE_ALL, Main.sharpness, true);
-		meta.addEnchant(Enchantment.DAMAGE_UNDEAD, Main.smite, true);
-		meta.addEnchant(Enchantment.DURABILITY, Main.unbreaking, true);
-		meta.addEnchant(Enchantment.DIG_SPEED, Main.efficiency, true);
+		meta.addEnchant(Enchantment.DAMAGE_ARTHROPODS, 32767, true);
+		meta.addEnchant(Enchantment.LOOT_BONUS_BLOCKS, 1000, true);
+		meta.addEnchant(Enchantment.MENDING, 32767, true);
+		meta.addEnchant(Enchantment.DAMAGE_ALL, 32767, true);
+		meta.addEnchant(Enchantment.DAMAGE_UNDEAD, 32767, true);
+		meta.addEnchant(Enchantment.DURABILITY, 32767, true);
+		meta.addEnchant(Enchantment.DIG_SPEED, 32767, true);
 		
 		if (vanishingtoggle) {
-			meta.addEnchant(Enchantment.VANISHING_CURSE, Main.vanishing_curse, true);
+			meta.addEnchant(Enchantment.VANISHING_CURSE, 32767, true);
 		}	
 		if (bindingtoggle) {
-			meta.addEnchant(Enchantment.BINDING_CURSE, Main.binding_curse, true);
+			meta.addEnchant(Enchantment.BINDING_CURSE, 32767, true);
 		}
 		if (!this.enchantstoggle) {
 			meta.addItemFlags(ItemFlag.HIDE_ENCHANTS);
@@ -729,20 +747,20 @@ public class CmdThree implements CommandExecutor {
 		lore.add(ChatColor.GOLD + "" + ChatColor.ITALIC + "Has silk touch");
 		meta.setLore(lore);
 
-		meta.addEnchant(Enchantment.DAMAGE_ARTHROPODS, Main.bane_of_arthropods, true);
-		meta.addEnchant(Enchantment.LOOT_BONUS_BLOCKS, Main.fortune, true);
-		meta.addEnchant(Enchantment.MENDING, Main.mending, true);
-		meta.addEnchant(Enchantment.DAMAGE_ALL, Main.sharpness, true);
-		meta.addEnchant(Enchantment.DAMAGE_UNDEAD, Main.smite, true);
-		meta.addEnchant(Enchantment.DURABILITY, Main.unbreaking, true);
-		meta.addEnchant(Enchantment.DIG_SPEED, Main.efficiency, true);
-		meta.addEnchant(Enchantment.SILK_TOUCH, Main.silk_touch, true);
+		meta.addEnchant(Enchantment.DAMAGE_ARTHROPODS, 32767, true);
+		meta.addEnchant(Enchantment.LOOT_BONUS_BLOCKS, 1000, true);
+		meta.addEnchant(Enchantment.MENDING, 32767, true);
+		meta.addEnchant(Enchantment.DAMAGE_ALL, 32767, true);
+		meta.addEnchant(Enchantment.DAMAGE_UNDEAD, 32767, true);
+		meta.addEnchant(Enchantment.DURABILITY, 32767, true);
+		meta.addEnchant(Enchantment.DIG_SPEED, 32767, true);
+		meta.addEnchant(Enchantment.SILK_TOUCH, 32767, true);
 		
 		if (vanishingtoggle) {
-			meta.addEnchant(Enchantment.VANISHING_CURSE, Main.vanishing_curse, true);
+			meta.addEnchant(Enchantment.VANISHING_CURSE, 32767, true);
 		}	
 		if (bindingtoggle) {
-			meta.addEnchant(Enchantment.BINDING_CURSE, Main.binding_curse, true);
+			meta.addEnchant(Enchantment.BINDING_CURSE, 32767, true);
 		}
 		if (!this.enchantstoggle) {
 			meta.addItemFlags(ItemFlag.HIDE_ENCHANTS);
@@ -768,19 +786,19 @@ public class CmdThree implements CommandExecutor {
 		lore.add(ChatColor.BOLD + "" + ChatColor.ITALIC + "Magical Item");
 		meta.setLore(lore);
 
-		meta.addEnchant(Enchantment.DAMAGE_ARTHROPODS, Main.bane_of_arthropods, true);
-		meta.addEnchant(Enchantment.LOOT_BONUS_BLOCKS, Main.fortune, true);
-		meta.addEnchant(Enchantment.MENDING, Main.mending, true);
-		meta.addEnchant(Enchantment.DAMAGE_ALL, Main.sharpness, true);
-		meta.addEnchant(Enchantment.DAMAGE_UNDEAD, Main.smite, true);
-		meta.addEnchant(Enchantment.DURABILITY, Main.unbreaking, true);
-		meta.addEnchant(Enchantment.DIG_SPEED, Main.efficiency, true);
+		meta.addEnchant(Enchantment.DAMAGE_ARTHROPODS, 32767, true);
+		meta.addEnchant(Enchantment.LOOT_BONUS_BLOCKS, 1000, true);
+		meta.addEnchant(Enchantment.MENDING, 32767, true);
+		meta.addEnchant(Enchantment.DAMAGE_ALL, 32767, true);
+		meta.addEnchant(Enchantment.DAMAGE_UNDEAD, 32767, true);
+		meta.addEnchant(Enchantment.DURABILITY, 32767, true);
+		meta.addEnchant(Enchantment.DIG_SPEED, 32767, true);
 		
 		if (vanishingtoggle) {
-			meta.addEnchant(Enchantment.VANISHING_CURSE, Main.vanishing_curse, true);
+			meta.addEnchant(Enchantment.VANISHING_CURSE, 32767, true);
 		}
 		if (bindingtoggle) {
-			meta.addEnchant(Enchantment.BINDING_CURSE, Main.binding_curse, true);
+			meta.addEnchant(Enchantment.BINDING_CURSE, 32767, true);
 		}	
 		if (!this.enchantstoggle) {
 			meta.addItemFlags(ItemFlag.HIDE_ENCHANTS);
@@ -806,19 +824,19 @@ public class CmdThree implements CommandExecutor {
 		lore.add(ChatColor.BOLD + "" + ChatColor.ITALIC + "Magical Item");
 		meta.setLore(lore);
 
-		meta.addEnchant(Enchantment.DAMAGE_ARTHROPODS, Main.bane_of_arthropods, true);
-		meta.addEnchant(Enchantment.LOOT_BONUS_BLOCKS, Main.fortune, true);
-		meta.addEnchant(Enchantment.MENDING, Main.mending, true);
-		meta.addEnchant(Enchantment.DAMAGE_ALL, Main.sharpness, true);
-		meta.addEnchant(Enchantment.DAMAGE_UNDEAD, Main.smite, true);
-		meta.addEnchant(Enchantment.DURABILITY, Main.unbreaking, true);
-		meta.addEnchant(Enchantment.DIG_SPEED, Main.efficiency, true);
+		meta.addEnchant(Enchantment.DAMAGE_ARTHROPODS, 32767, true);
+		meta.addEnchant(Enchantment.LOOT_BONUS_BLOCKS, 1000, true);
+		meta.addEnchant(Enchantment.MENDING, 32767, true);
+		meta.addEnchant(Enchantment.DAMAGE_ALL, 32767, true);
+		meta.addEnchant(Enchantment.DAMAGE_UNDEAD, 32767, true);
+		meta.addEnchant(Enchantment.DURABILITY, 32767, true);
+		meta.addEnchant(Enchantment.DIG_SPEED, 32767, true);
 		
 		if (vanishingtoggle) {
-			meta.addEnchant(Enchantment.VANISHING_CURSE, Main.vanishing_curse, true);
+			meta.addEnchant(Enchantment.VANISHING_CURSE, 32767, true);
 		}
 		if (bindingtoggle) {
-			meta.addEnchant(Enchantment.BINDING_CURSE, Main.binding_curse, true);
+			meta.addEnchant(Enchantment.BINDING_CURSE, 32767, true);
 		}	
 		if (!this.enchantstoggle) {
 			meta.addItemFlags(ItemFlag.HIDE_ENCHANTS);
@@ -845,20 +863,20 @@ public class CmdThree implements CommandExecutor {
 		lore.add(ChatColor.GOLD + "" + ChatColor.ITALIC + "Has silk touch");
 		meta.setLore(lore);
 
-		meta.addEnchant(Enchantment.DAMAGE_ARTHROPODS, Main.bane_of_arthropods, true);
-		meta.addEnchant(Enchantment.LOOT_BONUS_BLOCKS, Main.fortune, true);
-		meta.addEnchant(Enchantment.MENDING, Main.mending, true);
-		meta.addEnchant(Enchantment.DAMAGE_ALL, Main.sharpness, true);
-		meta.addEnchant(Enchantment.DAMAGE_UNDEAD, Main.smite, true);
-		meta.addEnchant(Enchantment.DURABILITY, Main.unbreaking, true);
-		meta.addEnchant(Enchantment.DIG_SPEED, Main.efficiency, true);
-		meta.addEnchant(Enchantment.SILK_TOUCH, Main.silk_touch, true);
+		meta.addEnchant(Enchantment.DAMAGE_ARTHROPODS, 32767, true);
+		meta.addEnchant(Enchantment.LOOT_BONUS_BLOCKS, 1000, true);
+		meta.addEnchant(Enchantment.MENDING, 32767, true);
+		meta.addEnchant(Enchantment.DAMAGE_ALL, 32767, true);
+		meta.addEnchant(Enchantment.DAMAGE_UNDEAD, 32767, true);
+		meta.addEnchant(Enchantment.DURABILITY, 32767, true);
+		meta.addEnchant(Enchantment.DIG_SPEED, 32767, true);
+		meta.addEnchant(Enchantment.SILK_TOUCH, 32767, true);
 		
 		if (vanishingtoggle) {
-			meta.addEnchant(Enchantment.VANISHING_CURSE, Main.vanishing_curse, true);
+			meta.addEnchant(Enchantment.VANISHING_CURSE, 32767, true);
 		}
 		if (bindingtoggle) {
-			meta.addEnchant(Enchantment.BINDING_CURSE, Main.binding_curse, true);
+			meta.addEnchant(Enchantment.BINDING_CURSE, 32767, true);
 		}	
 		if (!this.enchantstoggle) {
 			meta.addItemFlags(ItemFlag.HIDE_ENCHANTS);
@@ -884,17 +902,17 @@ public class CmdThree implements CommandExecutor {
 		lore.add(ChatColor.BOLD + "" + ChatColor.ITALIC + "Magical Item");
 		meta.setLore(lore);
 
-		meta.addEnchant(Enchantment.ARROW_FIRE, Main.flame, true);
-		meta.addEnchant(Enchantment.ARROW_INFINITE, Main.infinity, true);
-		meta.addEnchant(Enchantment.MENDING, Main.mending, true);
-		meta.addEnchant(Enchantment.ARROW_DAMAGE, Main.power, true);
-		meta.addEnchant(Enchantment.DURABILITY, Main.unbreaking, true);
+		meta.addEnchant(Enchantment.ARROW_FIRE, 32767, true);
+		meta.addEnchant(Enchantment.ARROW_INFINITE, 32767, true);
+		meta.addEnchant(Enchantment.MENDING, 32767, true);
+		meta.addEnchant(Enchantment.ARROW_DAMAGE, 32767, true);
+		meta.addEnchant(Enchantment.DURABILITY, 32767, true);
 		
 		if (vanishingtoggle) {
-			meta.addEnchant(Enchantment.VANISHING_CURSE, Main.vanishing_curse, true);
+			meta.addEnchant(Enchantment.VANISHING_CURSE, 32767, true);
 		}	
 		if (bindingtoggle) {
-			meta.addEnchant(Enchantment.BINDING_CURSE, Main.binding_curse, true);
+			meta.addEnchant(Enchantment.BINDING_CURSE, 32767, true);
 		}
 		if (!this.enchantstoggle) {
 			meta.addItemFlags(ItemFlag.HIDE_ENCHANTS);
@@ -910,6 +928,33 @@ public class CmdThree implements CommandExecutor {
 
 	}
 	
+	public ItemStack getArrows() {
+
+		ItemStack arrows = new ItemStack(Material.ARROW);
+		ItemMeta meta = arrows.getItemMeta();
+
+		List<String> lore = new ArrayList<>();
+		lore.add("");
+		lore.add(ChatColor.BOLD + "" + ChatColor.ITALIC + "Magical Item");
+		meta.setLore(lore);
+		
+		if (!this.enchantstoggle) {
+			meta.addItemFlags(ItemFlag.HIDE_ENCHANTS);
+		}
+		if (vanishingtoggle) {
+			meta.addEnchant(Enchantment.VANISHING_CURSE, 32767, true);
+		}
+		if (!this.attributestoggle) {
+			meta.addItemFlags(ItemFlag.HIDE_ATTRIBUTES);
+		}
+		
+		arrows.setItemMeta(meta);
+
+		return arrows;
+
+	}
+	
+	
 	public ItemStack getElytra() {
 
 		ItemStack elytra = new ItemStack(Material.ELYTRA);
@@ -920,15 +965,15 @@ public class CmdThree implements CommandExecutor {
 		lore.add(ChatColor.BOLD + "" + ChatColor.ITALIC + "Magical Item");
 		meta.setLore(lore);
 
-		meta.addEnchant(Enchantment.DURABILITY, Main.unbreaking, true);
-		meta.addEnchant(Enchantment.MENDING, Main.mending, true);
-		meta.addEnchant(Enchantment.THORNS, Main.thorns, true);
+		meta.addEnchant(Enchantment.DURABILITY, 32767, true);
+		meta.addEnchant(Enchantment.MENDING, 32767, true);
+		meta.addEnchant(Enchantment.THORNS, 32767, true);
 		
 		if (vanishingtoggle) {
-			meta.addEnchant(Enchantment.VANISHING_CURSE, Main.vanishing_curse, true);
+			meta.addEnchant(Enchantment.VANISHING_CURSE, 32767, true);
 		}	
 		if (bindingtoggle) {
-			meta.addEnchant(Enchantment.BINDING_CURSE, Main.binding_curse, true);
+			meta.addEnchant(Enchantment.BINDING_CURSE, 32767, true);
 		}
 		if (!this.enchantstoggle) {
 			meta.addItemFlags(ItemFlag.HIDE_ENCHANTS);
@@ -944,4 +989,31 @@ public class CmdThree implements CommandExecutor {
 
 	}
 	
+	public ItemStack getRockets() {
+
+		ItemStack rockets = new ItemStack(Material.FIREWORK_ROCKET);
+		ItemMeta meta = rockets.getItemMeta();
+
+		List<String> lore = new ArrayList<>();
+		lore.add("");
+		lore.add(ChatColor.BOLD + "" + ChatColor.ITALIC + "Magical Item");
+		meta.setLore(lore);
+		
+		if (!this.enchantstoggle) {
+			meta.addItemFlags(ItemFlag.HIDE_ENCHANTS);
+		}
+		if (vanishingtoggle) {
+			meta.addEnchant(Enchantment.VANISHING_CURSE, 32767, true);
+		}
+		if (!this.attributestoggle) {
+			meta.addItemFlags(ItemFlag.HIDE_ATTRIBUTES);
+		}
+		
+		rockets.setItemMeta(meta);
+
+		return rockets;
+
+	}
+	
 }
+
