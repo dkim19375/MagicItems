@@ -14,6 +14,7 @@ public class ThreeVanishingTab implements TabCompleter {
 		if (arguments.isEmpty()) {
 			arguments.add("help"); arguments.add("toggle");
 			arguments.add("status"); arguments.add("?");
+			
 		}
 		
 		List<String> result = new ArrayList<String>();
@@ -22,6 +23,8 @@ public class ThreeVanishingTab implements TabCompleter {
 				if (a.toLowerCase().startsWith(args[1].toLowerCase()))
 					result.add(a);
 			}
+
+			
 			return result;
 		}
 		

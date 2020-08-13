@@ -22,6 +22,17 @@ public class CmdFourFive implements CommandExecutor {
 	private boolean vanishingtoggle = true;
 	private boolean bindingtoggle = false;
 
+	boolean getItems(Location loc, World world, Player player, ItemStack getter) {
+		if (player.getInventory().firstEmpty() == -1) {
+			loc = player.getLocation();
+			world = player.getWorld();
+			world.dropItemNaturally(loc, getter);
+		} else {
+			player.getInventory().addItem(getter);
+		}
+		return false;
+	}
+	
 	@Override
 	public boolean onCommand(CommandSender sender, Command cmd, String label, String[] args) {
 		if (label.equalsIgnoreCase("magicitems")) {
@@ -46,238 +57,238 @@ public class CmdFourFive implements CommandExecutor {
 				sender.sendMessage(ChatColor.GREEN + "- /magicitems vanishing");
 				sender.sendMessage(ChatColor.GREEN + "- /magicitems binding");
 				return true;
-			} else {
-				if (args.length == 2) {
-					if (args[0].equalsIgnoreCase("vanishing")) {	
-						
-						if (args[1].equalsIgnoreCase("help")) {
-							sender.sendMessage(ChatColor.GREEN + "Usage:");
-							sender.sendMessage(ChatColor.GREEN + "- /magicitems vanishing ?");
-							sender.sendMessage(ChatColor.GREEN + "- /magicitems vanishing help");
-							sender.sendMessage(ChatColor.GREEN + "- /magicitems vanishing toggle");
-							sender.sendMessage(ChatColor.GREEN + "- /magicitems vanishing status");
-							return true;
-						}
-						
-						if (args[1].equalsIgnoreCase("toggle")) {
-							if (sender.hasPermission("magicitems.attributes.status")) {
-								if (vanishingtoggle) {
-									vanishingtoggle = false;
-									sender.sendMessage(ChatColor.GOLD + "The Vanishing Curse on Magic Tools: " + ChatColor.RED + " OFF" + ChatColor.GOLD + "!");
-								} else {
-									vanishingtoggle = true;
-									sender.sendMessage(ChatColor.GOLD + "The Vanishing Curse on Magic Tools: " + ChatColor.GREEN + " ON" + ChatColor.GOLD + "!");
-								}
-								return true;
-							} else {
-								sender.sendMessage(ChatColor.RED + "You do not have permission to run this command.");
-							}							
-						}
-						
-						if (args[1].equalsIgnoreCase("status")) {
-							if (sender.hasPermission("magicitems.vanishing.status")) {
-								if (vanishingtoggle) {
-									sender.sendMessage(ChatColor.GOLD + "The Vanishing Curse on Magic Tools: " + ChatColor.GREEN + " ON" + ChatColor.GOLD + "!");									
-								} else {
-									sender.sendMessage(ChatColor.GOLD + "The Vanishing Curse on Magic Tools: " + ChatColor.RED + " OFF" + ChatColor.GOLD + "!");
-								}
-								return true;
-							}
-							sender.sendMessage(ChatColor.RED + "You do not have permission to run this command.");
-						}
-						
-						if (args[1].equalsIgnoreCase("?") || args[1].equalsIgnoreCase("help")) {
-							sender.sendMessage(ChatColor.GREEN + "Usage:");
-							sender.sendMessage(ChatColor.GREEN + "- /magicitems vanishing ?");
-							sender.sendMessage(ChatColor.GREEN + "- /magicitems vanishing help");
-							sender.sendMessage(ChatColor.GREEN + "- /magicitems vanishing toggle");
-							sender.sendMessage(ChatColor.GREEN + "- /magicitems vanishing status");
-							
-							return true;
-						}
+			}
+			if (args.length == 2) {
+				if (args[0].equalsIgnoreCase("vanishing")) {	
 					
-						sender.sendMessage(ChatColor.RED + "Invalid arguments.");
+					if (args[1].equalsIgnoreCase("help")) {
+						sender.sendMessage(ChatColor.GREEN + "Usage:");
+						sender.sendMessage(ChatColor.GREEN + "- /magicitems vanishing ?");
+						sender.sendMessage(ChatColor.GREEN + "- /magicitems vanishing help");
+						sender.sendMessage(ChatColor.GREEN + "- /magicitems vanishing toggle");
+						sender.sendMessage(ChatColor.GREEN + "- /magicitems vanishing status");
+						return true;
+					}
+					
+					if (args[1].equalsIgnoreCase("toggle")) {
+						if (sender.hasPermission("magicitems.attributes.status")) {
+							if (vanishingtoggle) {
+								vanishingtoggle = false;
+								sender.sendMessage(ChatColor.GOLD + "The Vanishing Curse on Magic Tools: " + ChatColor.RED + " OFF" + ChatColor.GOLD + "!");
+							} else {
+								vanishingtoggle = true;
+								sender.sendMessage(ChatColor.GOLD + "The Vanishing Curse on Magic Tools: " + ChatColor.GREEN + " ON" + ChatColor.GOLD + "!");
+							}
+							return true;
+						} else {
+							sender.sendMessage(ChatColor.RED + "You do not have permission to run this command.");
+						}							
+					}
+					
+					if (args[1].equalsIgnoreCase("status")) {
+						if (sender.hasPermission("magicitems.vanishing.status")) {
+							if (vanishingtoggle) {
+								sender.sendMessage(ChatColor.GOLD + "The Vanishing Curse on Magic Tools: " + ChatColor.GREEN + " ON" + ChatColor.GOLD + "!");									
+							} else {
+								sender.sendMessage(ChatColor.GOLD + "The Vanishing Curse on Magic Tools: " + ChatColor.RED + " OFF" + ChatColor.GOLD + "!");
+							}
+							return true;
+						}
+						sender.sendMessage(ChatColor.RED + "You do not have permission to run this command.");
+					}
+					
+					if (args[1].equalsIgnoreCase("?") || args[1].equalsIgnoreCase("help")) {
 						sender.sendMessage(ChatColor.GREEN + "Usage:");
 						sender.sendMessage(ChatColor.GREEN + "- /magicitems vanishing ?");
 						sender.sendMessage(ChatColor.GREEN + "- /magicitems vanishing help");
 						sender.sendMessage(ChatColor.GREEN + "- /magicitems vanishing toggle");
 						sender.sendMessage(ChatColor.GREEN + "- /magicitems vanishing status");
 						
+						return true;
+					}
+				
+					sender.sendMessage(ChatColor.RED + "Invalid arguments.");
+					sender.sendMessage(ChatColor.GREEN + "Usage:");
+					sender.sendMessage(ChatColor.GREEN + "- /magicitems vanishing ?");
+					sender.sendMessage(ChatColor.GREEN + "- /magicitems vanishing help");
+					sender.sendMessage(ChatColor.GREEN + "- /magicitems vanishing toggle");
+					sender.sendMessage(ChatColor.GREEN + "- /magicitems vanishing status");
+					return true;
+				}
+				
+				if (args[0].equalsIgnoreCase("binding")) {	
+					
+					if (args[1].equalsIgnoreCase("help")) {
+						sender.sendMessage(ChatColor.GREEN + "Usage:");
+						sender.sendMessage(ChatColor.GREEN + "- /magicitems binding ?");
+						sender.sendMessage(ChatColor.GREEN + "- /magicitems binding help");
+						sender.sendMessage(ChatColor.GREEN + "- /magicitems binding toggle");
+						sender.sendMessage(ChatColor.GREEN + "- /magicitems binding status");
+						return true;
 					}
 					
-					if (args[0].equalsIgnoreCase("binding")) {	
-						
-						if (args[1].equalsIgnoreCase("help")) {
-							sender.sendMessage(ChatColor.GREEN + "Usage:");
-							sender.sendMessage(ChatColor.GREEN + "- /magicitems binding ?");
-							sender.sendMessage(ChatColor.GREEN + "- /magicitems binding help");
-							sender.sendMessage(ChatColor.GREEN + "- /magicitems binding toggle");
-							sender.sendMessage(ChatColor.GREEN + "- /magicitems binding status");
-							return true;
-						}
-						
-						if (args[1].equalsIgnoreCase("toggle")) {
-							if (sender.hasPermission("magicitems.binding.status")) {
-								if (bindingtoggle) {
-									bindingtoggle = false;
-									sender.sendMessage(ChatColor.GOLD + "The Binding Curse on Magic Tools: " + ChatColor.RED + " OFF" + ChatColor.GOLD + "!");
-								} else {
-									bindingtoggle = true;
-									sender.sendMessage(ChatColor.GOLD + "The Binding Curse on Magic Tools: " + ChatColor.GREEN + " ON" + ChatColor.GOLD + "!");
-								}
-								return true;
+					if (args[1].equalsIgnoreCase("toggle")) {
+						if (sender.hasPermission("magicitems.binding.status")) {
+							if (bindingtoggle) {
+								bindingtoggle = false;
+								sender.sendMessage(ChatColor.GOLD + "The Binding Curse on Magic Tools: " + ChatColor.RED + " OFF" + ChatColor.GOLD + "!");
 							} else {
-								sender.sendMessage(ChatColor.RED + "You do not have permission to run this command.");
-							}							
-						}
-						
-						if (args[1].equalsIgnoreCase("status")) {
-							if (sender.hasPermission("magicitems.binding.status")) {
-								if (vanishingtoggle) {
-									sender.sendMessage(ChatColor.GOLD + "The Binding Curse on Magic Tools: " + ChatColor.GREEN + " ON" + ChatColor.GOLD + "!");									
-								} else {
-									sender.sendMessage(ChatColor.GOLD + "The Binding Curse on Magic Tools: " + ChatColor.RED + " OFF" + ChatColor.GOLD + "!");
-								}
-								return true;
+								bindingtoggle = true;
+								sender.sendMessage(ChatColor.GOLD + "The Binding Curse on Magic Tools: " + ChatColor.GREEN + " ON" + ChatColor.GOLD + "!");
 							}
+							return true;
+						} else {
 							sender.sendMessage(ChatColor.RED + "You do not have permission to run this command.");
-						}
-						
-						if (args[1].equalsIgnoreCase("?") || args[1].equalsIgnoreCase("help")) {
-							sender.sendMessage(ChatColor.GREEN + "Usage:");
-							sender.sendMessage(ChatColor.GREEN + "- /magicitems binding ?");
-							sender.sendMessage(ChatColor.GREEN + "- /magicitems binding help");
-							sender.sendMessage(ChatColor.GREEN + "- /magicitems binding toggle");
-							sender.sendMessage(ChatColor.GREEN + "- /magicitems binding status");
-							
+						}							
+					}
+					
+					if (args[1].equalsIgnoreCase("status")) {
+						if (sender.hasPermission("magicitems.binding.status")) {
+							if (vanishingtoggle) {
+								sender.sendMessage(ChatColor.GOLD + "The Binding Curse on Magic Tools: " + ChatColor.GREEN + " ON" + ChatColor.GOLD + "!");									
+							} else {
+								sender.sendMessage(ChatColor.GOLD + "The Binding Curse on Magic Tools: " + ChatColor.RED + " OFF" + ChatColor.GOLD + "!");
+							}
 							return true;
 						}
+						sender.sendMessage(ChatColor.RED + "You do not have permission to run this command.");
+					}
 					
-						sender.sendMessage(ChatColor.RED + "Invalid arguments.");
+					if (args[1].equalsIgnoreCase("?") || args[1].equalsIgnoreCase("help")) {
 						sender.sendMessage(ChatColor.GREEN + "Usage:");
 						sender.sendMessage(ChatColor.GREEN + "- /magicitems binding ?");
 						sender.sendMessage(ChatColor.GREEN + "- /magicitems binding help");
 						sender.sendMessage(ChatColor.GREEN + "- /magicitems binding toggle");
 						sender.sendMessage(ChatColor.GREEN + "- /magicitems binding status");
 						
+						return true;
 					}
 				
-					if (args[0].equalsIgnoreCase("enchants")) {	
-						
-						if (args[1].equalsIgnoreCase("help")) {
-							sender.sendMessage(ChatColor.GREEN + "Usage:");
-							sender.sendMessage(ChatColor.GREEN + "- /enchants vanishing ?");
-							sender.sendMessage(ChatColor.GREEN + "- /enchants vanishing help");
-							sender.sendMessage(ChatColor.GREEN + "- /enchants vanishing toggle");
-							sender.sendMessage(ChatColor.GREEN + "- /enchants vanishing status");
-							return true;
-						}
-						
-						if (args[1].equalsIgnoreCase("toggle")) {
-							if (sender.hasPermission("magicitems.enchants.toggle")) {
-								if (enchantstoggle) {
-									enchantstoggle = false;
-									sender.sendMessage(ChatColor.GOLD + "Enchants on Magic Tools: " + ChatColor.RED + " OFF" + ChatColor.GOLD + "!");
-								} else {
-									enchantstoggle = true;
-									sender.sendMessage(ChatColor.GOLD + "Enchants on Magic Tools: " + ChatColor.GREEN + " ON" + ChatColor.GOLD + "!");
-								}
-								return true;
-							} else {
-								sender.sendMessage(ChatColor.RED + "You do not have permission to run this command.");
-							}
-
-						}
-						
-						if (args[1].equalsIgnoreCase("status")) {
-							if (sender.hasPermission("magicitems.enchants.status")) {
-								if (enchantstoggle) {
-									sender.sendMessage(ChatColor.GOLD + "Enchants on Magic Tools: " + ChatColor.GREEN + " ON" + ChatColor.GOLD + "!");									
-								} else {
-									sender.sendMessage(ChatColor.GOLD + "Enchants Curse on Magic Tools: " + ChatColor.RED + " OFF" + ChatColor.GOLD + "!");
-								}
-								return true;
-							} else {
-								sender.sendMessage(ChatColor.RED + "You do not have permission to run this command.");
-							}
-
-						}
-						
-						if (args[1].equalsIgnoreCase("?") || args[1].equalsIgnoreCase("help")) {
-							sender.sendMessage(ChatColor.GREEN + "Usage:");
-							sender.sendMessage(ChatColor.GREEN + "- /magicitems enchants ?");
-							sender.sendMessage(ChatColor.GREEN + "- /magicitems enchants help");
-							sender.sendMessage(ChatColor.GREEN + "- /magicitems enchants toggle");
-							sender.sendMessage(ChatColor.GREEN + "- /magicitems enchants status");
-							
-							return true;
-						}
+					sender.sendMessage(ChatColor.RED + "Invalid arguments.");
+					sender.sendMessage(ChatColor.GREEN + "Usage:");
+					sender.sendMessage(ChatColor.GREEN + "- /magicitems binding ?");
+					sender.sendMessage(ChatColor.GREEN + "- /magicitems binding help");
+					sender.sendMessage(ChatColor.GREEN + "- /magicitems binding toggle");
+					sender.sendMessage(ChatColor.GREEN + "- /magicitems binding status");
+					return true;
+				}
+			
+				if (args[0].equalsIgnoreCase("enchants")) {	
 					
-						sender.sendMessage(ChatColor.RED + "Invalid arguments.");
+					if (args[1].equalsIgnoreCase("help")) {
+						sender.sendMessage(ChatColor.GREEN + "Usage:");
+						sender.sendMessage(ChatColor.GREEN + "- /enchants vanishing ?");
+						sender.sendMessage(ChatColor.GREEN + "- /enchants vanishing help");
+						sender.sendMessage(ChatColor.GREEN + "- /enchants vanishing toggle");
+						sender.sendMessage(ChatColor.GREEN + "- /enchants vanishing status");
+						return true;
+					}
+					
+					if (args[1].equalsIgnoreCase("toggle")) {
+						if (sender.hasPermission("magicitems.enchants.toggle")) {
+							if (enchantstoggle) {
+								enchantstoggle = false;
+								sender.sendMessage(ChatColor.GOLD + "Enchants on Magic Tools: " + ChatColor.RED + " OFF" + ChatColor.GOLD + "!");
+							} else {
+								enchantstoggle = true;
+								sender.sendMessage(ChatColor.GOLD + "Enchants on Magic Tools: " + ChatColor.GREEN + " ON" + ChatColor.GOLD + "!");
+							}
+							return true;
+						} else {
+							sender.sendMessage(ChatColor.RED + "You do not have permission to run this command.");
+						}
+
+					}
+					
+					if (args[1].equalsIgnoreCase("status")) {
+						if (sender.hasPermission("magicitems.enchants.status")) {
+							if (enchantstoggle) {
+								sender.sendMessage(ChatColor.GOLD + "Enchants on Magic Tools: " + ChatColor.GREEN + " ON" + ChatColor.GOLD + "!");									
+							} else {
+								sender.sendMessage(ChatColor.GOLD + "Enchants Curse on Magic Tools: " + ChatColor.RED + " OFF" + ChatColor.GOLD + "!");
+							}
+							return true;
+						} else {
+							sender.sendMessage(ChatColor.RED + "You do not have permission to run this command.");
+						}
+
+					}
+					
+					if (args[1].equalsIgnoreCase("?") || args[1].equalsIgnoreCase("help")) {
 						sender.sendMessage(ChatColor.GREEN + "Usage:");
 						sender.sendMessage(ChatColor.GREEN + "- /magicitems enchants ?");
 						sender.sendMessage(ChatColor.GREEN + "- /magicitems enchants help");
 						sender.sendMessage(ChatColor.GREEN + "- /magicitems enchants toggle");
 						sender.sendMessage(ChatColor.GREEN + "- /magicitems enchants status");
-					
+						
+						return true;
 					}
-					if (args[0].equalsIgnoreCase("attributes")) {	
-						
-						if (args[1].equalsIgnoreCase("help")) {
-							sender.sendMessage(ChatColor.GREEN + "Usage:");
-							sender.sendMessage(ChatColor.GREEN + "- /enchants attributes ?");
-							sender.sendMessage(ChatColor.GREEN + "- /enchants attributes help");
-							sender.sendMessage(ChatColor.GREEN + "- /enchants attributes toggle");
-							sender.sendMessage(ChatColor.GREEN + "- /enchants attributes status");
-							return true;
-						}
-						
-						if (args[1].equalsIgnoreCase("toggle")) {
-							if (sender.hasPermission("magicitems.attributes.toggle")) {
-								if (attributestoggle) {
-									attributestoggle = false;
-									sender.sendMessage(ChatColor.GOLD + "Attributes on Magic Tools: " + ChatColor.RED + " OFF" + ChatColor.GOLD + "!");
-								} else {
-									attributestoggle = true;
-									sender.sendMessage(ChatColor.GOLD + "Attributes on Magic Tools: " + ChatColor.GREEN + " ON" + ChatColor.GOLD + "!");
-								}
-								return true;
-							} else {
-								sender.sendMessage(ChatColor.RED + "You do not have permission to run this command.");
-							}
-						}
-						
-						if (args[1].equalsIgnoreCase("status")) {
-							if (sender.hasPermission("magicitems.attributes.status")) {
-								if (attributestoggle) {
-									sender.sendMessage(ChatColor.GOLD + "Attributes on Magic Tools: " + ChatColor.GREEN + " ON" + ChatColor.GOLD + "!");									
-								} else {
-									sender.sendMessage(ChatColor.GOLD + "Attributes Curse on Magic Tools: " + ChatColor.RED + " OFF" + ChatColor.GOLD + "!");
-								}
-								return true;
-							} else {
-								sender.sendMessage(ChatColor.RED + "You do not have permission to run this command.");
-							}
-						}
-						
-						if (args[1].equalsIgnoreCase("?") || args[1].equalsIgnoreCase("help")) {
-							sender.sendMessage(ChatColor.GREEN + "Usage:");
-							sender.sendMessage(ChatColor.GREEN + "- /magicitems attributes ?");
-							sender.sendMessage(ChatColor.GREEN + "- /magicitems attributes help");
-							sender.sendMessage(ChatColor.GREEN + "- /magicitems attributes toggle");
-							sender.sendMessage(ChatColor.GREEN + "- /magicitems attributes status");
-							
-							return true;
-						}
+				
+					sender.sendMessage(ChatColor.RED + "Invalid arguments.");
+					sender.sendMessage(ChatColor.GREEN + "Usage:");
+					sender.sendMessage(ChatColor.GREEN + "- /magicitems enchants ?");
+					sender.sendMessage(ChatColor.GREEN + "- /magicitems enchants help");
+					sender.sendMessage(ChatColor.GREEN + "- /magicitems enchants toggle");
+					sender.sendMessage(ChatColor.GREEN + "- /magicitems enchants status");
+					return true;
+				}
+				if (args[0].equalsIgnoreCase("attributes")) {	
 					
-						sender.sendMessage(ChatColor.RED + "Invalid arguments.");
+					if (args[1].equalsIgnoreCase("help")) {
+						sender.sendMessage(ChatColor.GREEN + "Usage:");
+						sender.sendMessage(ChatColor.GREEN + "- /enchants attributes ?");
+						sender.sendMessage(ChatColor.GREEN + "- /enchants attributes help");
+						sender.sendMessage(ChatColor.GREEN + "- /enchants attributes toggle");
+						sender.sendMessage(ChatColor.GREEN + "- /enchants attributes status");
+						return true;
+					}
+					
+					if (args[1].equalsIgnoreCase("toggle")) {
+						if (sender.hasPermission("magicitems.attributes.toggle")) {
+							if (attributestoggle) {
+								attributestoggle = false;
+								sender.sendMessage(ChatColor.GOLD + "Attributes on Magic Tools: " + ChatColor.RED + " OFF" + ChatColor.GOLD + "!");
+							} else {
+								attributestoggle = true;
+								sender.sendMessage(ChatColor.GOLD + "Attributes on Magic Tools: " + ChatColor.GREEN + " ON" + ChatColor.GOLD + "!");
+							}
+							return true;
+						} else {
+							sender.sendMessage(ChatColor.RED + "You do not have permission to run this command.");
+						}
+					}
+					
+					if (args[1].equalsIgnoreCase("status")) {
+						if (sender.hasPermission("magicitems.attributes.status")) {
+							if (attributestoggle) {
+								sender.sendMessage(ChatColor.GOLD + "Attributes on Magic Tools: " + ChatColor.GREEN + " ON" + ChatColor.GOLD + "!");									
+							} else {
+								sender.sendMessage(ChatColor.GOLD + "Attributes Curse on Magic Tools: " + ChatColor.RED + " OFF" + ChatColor.GOLD + "!");
+							}
+							return true;
+						} else {
+							sender.sendMessage(ChatColor.RED + "You do not have permission to run this command.");
+						}
+					}
+					
+					if (args[1].equalsIgnoreCase("?") || args[1].equalsIgnoreCase("help")) {
 						sender.sendMessage(ChatColor.GREEN + "Usage:");
 						sender.sendMessage(ChatColor.GREEN + "- /magicitems attributes ?");
 						sender.sendMessage(ChatColor.GREEN + "- /magicitems attributes help");
 						sender.sendMessage(ChatColor.GREEN + "- /magicitems attributes toggle");
 						sender.sendMessage(ChatColor.GREEN + "- /magicitems attributes status");
+						
+						return true;
 					}
+				
+					sender.sendMessage(ChatColor.RED + "Invalid arguments.");
+					sender.sendMessage(ChatColor.GREEN + "Usage:");
+					sender.sendMessage(ChatColor.GREEN + "- /magicitems attributes ?");
+					sender.sendMessage(ChatColor.GREEN + "- /magicitems attributes help");
+					sender.sendMessage(ChatColor.GREEN + "- /magicitems attributes toggle");
+					sender.sendMessage(ChatColor.GREEN + "- /magicitems attributes status");
 				}
+				return true;
 			}
 			if (args.length == 1) {
 				if (args[0].equalsIgnoreCase("help")) {
@@ -291,120 +302,36 @@ public class CmdFourFive implements CommandExecutor {
 				if (args[0].equalsIgnoreCase("give")) {
 					if (!(sender.hasPermission("magicitems.give"))) {
 						sender.sendMessage(ChatColor.RED + "You do not have permission to run this command.");
-					} else {
-						if (!(sender instanceof Player)) {
-							sender.sendMessage("You cannot hold items as a console.");
-							return true;
-						}
-						Player player = (Player) sender;
-						player.sendMessage(ChatColor.GOLD + "You have been received the items.");
-						if (player.getInventory().firstEmpty() == -1) {
-							Location loc = player.getLocation();
-							World world = player.getWorld();
-							world.dropItemNaturally(loc, getHelmet());
-						} else {
-							player.getInventory().addItem(getHelmet());
-						}
-						if (player.getInventory().firstEmpty() == -1) {
-							Location loc = player.getLocation();
-							World world = player.getWorld();
-							world.dropItemNaturally(loc, getChestplate());
-						} else {
-							player.getInventory().addItem(getChestplate());
-						}
-						if (player.getInventory().firstEmpty() == -1) {
-							Location loc = player.getLocation();
-							World world = player.getWorld();
-							world.dropItemNaturally(loc, getLeggings());
-						} else {
-							player.getInventory().addItem(getLeggings());
-						}
-						if (player.getInventory().firstEmpty() == -1) {
-							Location loc = player.getLocation();
-							World world = player.getWorld();
-							world.dropItemNaturally(loc, getBoots());
-						} else {
-							player.getInventory().addItem(getBoots());
-						}
-						if (player.getInventory().firstEmpty() == -1) {
-							Location loc = player.getLocation();
-							World world = player.getWorld();
-							world.dropItemNaturally(loc, getSword());
-						} else {
-							player.getInventory().addItem(getSword());
-						}
-						if (player.getInventory().firstEmpty() == -1) {
-							Location loc = player.getLocation();
-							World world = player.getWorld();
-							world.dropItemNaturally(loc, getAxe());
-						} else {
-							player.getInventory().addItem(getAxe());
-						}
-						if (player.getInventory().firstEmpty() == -1) {
-							Location loc = player.getLocation();
-							World world = player.getWorld();
-							world.dropItemNaturally(loc, getAxe2());
-						} else {
-							player.getInventory().addItem(getAxe2());
-						}
-						if (player.getInventory().firstEmpty() == -1) {
-							Location loc = player.getLocation();
-							World world = player.getWorld();
-							world.dropItemNaturally(loc, getPickaxe());
-						} else {
-							player.getInventory().addItem(getPickaxe());
-						}
-						if (player.getInventory().firstEmpty() == -1) {
-							Location loc = player.getLocation();
-							World world = player.getWorld();
-							world.dropItemNaturally(loc, getPickaxe2());
-						} else {
-							player.getInventory().addItem(getPickaxe2());
-						}
-						if (player.getInventory().firstEmpty() == -1) {
-							Location loc = player.getLocation();
-							World world = player.getWorld();
-							world.dropItemNaturally(loc, getShovel());
-						} else {
-							player.getInventory().addItem(getShovel());
-						}
-						if (player.getInventory().firstEmpty() == -1) {
-							Location loc = player.getLocation();
-							World world = player.getWorld();
-							world.dropItemNaturally(loc, getShovel2());
-						} else {
-							player.getInventory().addItem(getShovel2());
-						}
-						if (player.getInventory().firstEmpty() == -1) {
-							Location loc = player.getLocation();
-							World world = player.getWorld();
-							world.dropItemNaturally(loc, getHoe());
-						} else {
-							player.getInventory().addItem(getHoe());
-						}
-						if (player.getInventory().firstEmpty() == -1) {
-							Location loc = player.getLocation();
-							World world = player.getWorld();
-							world.dropItemNaturally(loc, getBow());
-						} else {
-							player.getInventory().addItem(getBow());
-						}
-						if (player.getInventory().firstEmpty() == -1) {
-							Location loc = player.getLocation();
-							World world = player.getWorld();
-							world.dropItemNaturally(loc, getElytra());
-						} else {
-							player.getInventory().addItem(getElytra());
-						}
-						if (player.getInventory().firstEmpty() == -1) {
-							Location loc = player.getLocation();
-							World world = player.getWorld();
-							world.dropItemNaturally(loc, getCrossbow());
-						} else {
-							player.getInventory().addItem(getCrossbow());
-						}
 						return true;
 					}
+					if (!(sender instanceof Player)) {
+						sender.sendMessage("You cannot hold items as a console.");
+						return true;
+					}
+					Player player = (Player) sender;
+					player.sendMessage(ChatColor.GOLD + "You have been received the items.");
+					getItems(player.getLocation(), player.getWorld(), player, getHelmet());
+					getItems(player.getLocation(), player.getWorld(), player, getChestplate());
+					getItems(player.getLocation(), player.getWorld(), player, getLeggings());
+					getItems(player.getLocation(), player.getWorld(), player, getBoots());
+					getItems(player.getLocation(), player.getWorld(), player, getSword());
+					getItems(player.getLocation(), player.getWorld(), player, getAxe());
+					getItems(player.getLocation(), player.getWorld(), player, getAxe2());
+					getItems(player.getLocation(), player.getWorld(), player, getPickaxe());
+					getItems(player.getLocation(), player.getWorld(), player, getPickaxe2());
+					getItems(player.getLocation(), player.getWorld(), player, getShovel());
+					getItems(player.getLocation(), player.getWorld(), player, getShovel2());
+					getItems(player.getLocation(), player.getWorld(), player, getHoe());
+					getItems(player.getLocation(), player.getWorld(), player, getBow());
+					for (int i = 0; i < 64; i++) {
+						getItems(player.getLocation(), player.getWorld(), player, getArrows());
+					}
+					getItems(player.getLocation(), player.getWorld(), player, getElytra());
+					for (int i = 0; i < 64; i++) {
+						getItems(player.getLocation(), player.getWorld(), player, getRockets());
+					}
+					getItems(player.getLocation(), player.getWorld(), player, getCrossbow());
+					return true;
 				}
 			}
 		}
@@ -914,6 +841,32 @@ public class CmdFourFive implements CommandExecutor {
 		return bow;
 
 	}
+
+	public ItemStack getArrows() {
+
+		ItemStack arrows = new ItemStack(Material.ARROW);
+		ItemMeta meta = arrows.getItemMeta();
+
+		List<String> lore = new ArrayList<>();
+		lore.add("");
+		lore.add(ChatColor.BOLD + "" + ChatColor.ITALIC + "Magical Item");
+		meta.setLore(lore);
+		
+		if (!this.enchantstoggle) {
+			meta.addItemFlags(ItemFlag.HIDE_ENCHANTS);
+		}
+		if (vanishingtoggle) {
+			meta.addEnchant(Enchantment.VANISHING_CURSE, 32767, true);
+		}
+		if (!this.attributestoggle) {
+			meta.addItemFlags(ItemFlag.HIDE_ATTRIBUTES);
+		}
+		
+		arrows.setItemMeta(meta);
+
+		return arrows;
+
+	}	
 	
 	public ItemStack getElytra() {
 
@@ -946,6 +899,32 @@ public class CmdFourFive implements CommandExecutor {
 		elytra.setItemMeta(meta);
 
 		return elytra;
+
+	}
+	
+	public ItemStack getRockets() {
+
+		ItemStack rockets = new ItemStack(Material.FIREWORK_ROCKET);
+		ItemMeta meta = rockets.getItemMeta();
+
+		List<String> lore = new ArrayList<>();
+		lore.add("");
+		lore.add(ChatColor.BOLD + "" + ChatColor.ITALIC + "Magical Item");
+		meta.setLore(lore);
+		
+		if (!this.enchantstoggle) {
+			meta.addItemFlags(ItemFlag.HIDE_ENCHANTS);
+		}
+		if (vanishingtoggle) {
+			meta.addEnchant(Enchantment.VANISHING_CURSE, 32767, true);
+		}
+		if (!this.attributestoggle) {
+			meta.addItemFlags(ItemFlag.HIDE_ATTRIBUTES);
+		}
+		
+		rockets.setItemMeta(meta);
+
+		return rockets;
 
 	}
 	
