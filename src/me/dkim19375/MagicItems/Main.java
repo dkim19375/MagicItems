@@ -19,6 +19,8 @@ public class Main extends JavaPlugin {
 		
 		System.out.println("[MagicItems] Starting up Magic Items!");
 		
+		this.saveDefaultConfig();
+		
 		if (Bukkit.getVersion().contains("1.16")) {
 			System.out.println("[MagicItems] Version detected: 1.16.x");
 			this.getCommand("magicitems").setExecutor(new CmdSix());

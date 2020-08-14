@@ -22,18 +22,6 @@ public class CmdThree implements CommandExecutor {
 	private boolean vanishingtoggle = true;
 	private boolean bindingtoggle = false;
 
-	
-	boolean getItems(Location loc, World world, Player player, ItemStack getter) {
-		if (player.getInventory().firstEmpty() == -1) {
-			loc = player.getLocation();
-			world = player.getWorld();
-			world.dropItemNaturally(loc, getter);
-		} else {
-			player.getInventory().addItem(getter);
-		}
-		return false;
-	}
-	
 	@Override
 	public boolean onCommand(CommandSender sender, Command cmd, String label, String[] args) {
 		if (label.equalsIgnoreCase("magicitems")) {
@@ -72,7 +60,7 @@ public class CmdThree implements CommandExecutor {
 						}
 						
 						if (args[1].equalsIgnoreCase("toggle")) {
-							if (sender.hasPermission("magicitems.vanishing.status")) {
+							if (sender.hasPermission("magicitems.attributes.status")) {
 								if (vanishingtoggle) {
 									vanishingtoggle = false;
 									sender.sendMessage(ChatColor.GOLD + "The Vanishing Curse on Magic Tools: " + ChatColor.RED + " OFF" + ChatColor.GOLD + "!");
@@ -312,28 +300,121 @@ public class CmdThree implements CommandExecutor {
 						}
 						Player player = (Player) sender;
 						player.sendMessage(ChatColor.GOLD + "You have been received the items.");
-						
-						getItems(player.getLocation(), player.getWorld(), player, getHelmet());
-						getItems(player.getLocation(), player.getWorld(), player, getChestplate());
-						getItems(player.getLocation(), player.getWorld(), player, getLeggings());
-						getItems(player.getLocation(), player.getWorld(), player, getBoots());
-						getItems(player.getLocation(), player.getWorld(), player, getSword());
-						getItems(player.getLocation(), player.getWorld(), player, getAxe());
-						getItems(player.getLocation(), player.getWorld(), player, getAxe2());
-						getItems(player.getLocation(), player.getWorld(), player, getPickaxe());
-						getItems(player.getLocation(), player.getWorld(), player, getPickaxe2());
-						getItems(player.getLocation(), player.getWorld(), player, getShovel());
-						getItems(player.getLocation(), player.getWorld(), player, getShovel2());
-						getItems(player.getLocation(), player.getWorld(), player, getHoe());
-						getItems(player.getLocation(), player.getWorld(), player, getBow());
-						getItems(player.getLocation(), player.getWorld(), player, getArrows());
-						getItems(player.getLocation(), player.getWorld(), player, getPickaxe2());
-						for (int i = 0; i < 64; i++) {
-							getItems(player.getLocation(), player.getWorld(), player, getArrows());
+						if (player.getInventory().firstEmpty() == -1) {
+							Location loc = player.getLocation();
+							World world = player.getWorld();
+							world.dropItemNaturally(loc, getHelmet());
+						} else {
+							player.getInventory().addItem(getHelmet());
 						}
-						getItems(player.getLocation(), player.getWorld(), player, getElytra());
+						if (player.getInventory().firstEmpty() == -1) {
+							Location loc = player.getLocation();
+							World world = player.getWorld();
+							world.dropItemNaturally(loc, getChestplate());
+						} else {
+							player.getInventory().addItem(getChestplate());
+						}
+						if (player.getInventory().firstEmpty() == -1) {
+							Location loc = player.getLocation();
+							World world = player.getWorld();
+							world.dropItemNaturally(loc, getLeggings());
+						} else {
+							player.getInventory().addItem(getLeggings());
+						}
+						if (player.getInventory().firstEmpty() == -1) {
+							Location loc = player.getLocation();
+							World world = player.getWorld();
+							world.dropItemNaturally(loc, getBoots());
+						} else {
+							player.getInventory().addItem(getBoots());
+						}
+						if (player.getInventory().firstEmpty() == -1) {
+							Location loc = player.getLocation();
+							World world = player.getWorld();
+							world.dropItemNaturally(loc, getSword());
+						} else {
+							player.getInventory().addItem(getSword());
+						}
+						if (player.getInventory().firstEmpty() == -1) {
+							Location loc = player.getLocation();
+							World world = player.getWorld();
+							world.dropItemNaturally(loc, getAxe());
+						} else {
+							player.getInventory().addItem(getAxe());
+						}
+						if (player.getInventory().firstEmpty() == -1) {
+							Location loc = player.getLocation();
+							World world = player.getWorld();
+							world.dropItemNaturally(loc, getAxe2());
+						} else {
+							player.getInventory().addItem(getAxe2());
+						}
+						if (player.getInventory().firstEmpty() == -1) {
+							Location loc = player.getLocation();
+							World world = player.getWorld();
+							world.dropItemNaturally(loc, getPickaxe());
+						} else {
+							player.getInventory().addItem(getPickaxe());
+						}
+						if (player.getInventory().firstEmpty() == -1) {
+							Location loc = player.getLocation();
+							World world = player.getWorld();
+							world.dropItemNaturally(loc, getPickaxe2());
+						} else {
+							player.getInventory().addItem(getPickaxe2());
+						}
+						if (player.getInventory().firstEmpty() == -1) {
+							Location loc = player.getLocation();
+							World world = player.getWorld();
+							world.dropItemNaturally(loc, getShovel());
+						} else {
+							player.getInventory().addItem(getShovel());
+						}
+						if (player.getInventory().firstEmpty() == -1) {
+							Location loc = player.getLocation();
+							World world = player.getWorld();
+							world.dropItemNaturally(loc, getShovel2());
+						} else {
+							player.getInventory().addItem(getShovel2());
+						}
+						if (player.getInventory().firstEmpty() == -1) {
+							Location loc = player.getLocation();
+							World world = player.getWorld();
+							world.dropItemNaturally(loc, getHoe());
+						} else {
+							player.getInventory().addItem(getHoe());
+						}
+						if (player.getInventory().firstEmpty() == -1) {
+							Location loc = player.getLocation();
+							World world = player.getWorld();
+							world.dropItemNaturally(loc, getBow());
+						} else {
+							player.getInventory().addItem(getBow());
+						}
 						for (int i = 0; i < 64; i++) {
-							getItems(player.getLocation(), player.getWorld(), player, getRockets());
+							if (player.getInventory().firstEmpty() == -1) {
+								Location loc = player.getLocation();
+								World world = player.getWorld();
+								world.dropItemNaturally(loc, getArrows());
+							} else {
+								player.getInventory().addItem(getArrows());
+							}
+						}
+						if (player.getInventory().firstEmpty() == -1) {
+							Location loc = player.getLocation();
+							World world = player.getWorld();
+							world.dropItemNaturally(loc, getElytra());
+						} else {
+							player.getInventory().addItem(getElytra());
+						}
+						for (int i = 0; i < 64; i++) {
+							if (player.getInventory().firstEmpty() == -1) {
+								Location loc = player.getLocation();
+								World world = player.getWorld();
+								world.dropItemNaturally(loc, getRockets());
+							} else {
+								player.getInventory().addItem(getRockets());
+							}
 						}
 						return true;
 					}
@@ -871,7 +952,8 @@ public class CmdThree implements CommandExecutor {
 
 		return arrows;
 
-	}	
+	}
+	
 	
 	public ItemStack getElytra() {
 
