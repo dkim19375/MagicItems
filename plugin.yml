@@ -1,8 +1,1 @@
-main: me.dkim19375.MagicItemsDev.Main
-name: MagicItems
-version: Beta v3.1.0
-author: dkim19375
 api-version: 1.13
-
-commands:
-   magicitems:
