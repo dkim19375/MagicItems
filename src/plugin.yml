@@ -1,8 +1,17 @@
 main: me.dkim19375.MagicItems.Main
 name: MagicItems
-version: B4.0.0
+version: B5.0.0
+description: Get some OP items with one command!
 author: dkim19375
 api-version: 1.13
-
+website: https://www.spigotmc.org/resources/magicitems.82693/updates
 commands:
-   magicitems:
+  blahtest:
+    description: test
+    usage: /blahtest location
+  testing:
+    description: testing command
+    usage: /testing
+  magicitems:
+    description: main command
+    usage: /magicitems help
