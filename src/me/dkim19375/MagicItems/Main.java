@@ -9,7 +9,6 @@ import org.bukkit.plugin.java.JavaPlugin;
 
 import me.dkim19375.MagicItems.CMD.MagicItemsCMD;
 import me.dkim19375.MagicItems.CMD.TabCompleter1;
-import me.dkim19375.MagicItems.CMD.TabCompleter2;
 
 
 public class Main extends JavaPlugin {
@@ -47,7 +46,6 @@ public class Main extends JavaPlugin {
 			updateChecker();
 			this.getCommand("magicitems").setExecutor(new MagicItemsCMD(this));
 			this.getCommand("magicitems").setTabCompleter(new TabCompleter1());
-			this.getCommand("magicitems").setTabCompleter(new TabCompleter2());
 			System.out.println("[MagicItems] Done! Enjoy the plugin!");
 		} else {
 			if (Bukkit.getVersion().contains("1.13")) {
@@ -56,7 +54,6 @@ public class Main extends JavaPlugin {
 				this.getCommand("magicitems").setExecutor(new MagicItemsCMD(this));
 				this.getCommand("testing").setExecutor(new MagicItemsCMD(this));
 				this.getCommand("magicitems").setTabCompleter(new TabCompleter1());
-				this.getCommand("magicitems").setTabCompleter(new TabCompleter2());
 				System.out.println("[MagicItems] Done! Enjoy the plugin!");
 			} else {
 				if (Bukkit.getVersion().contains("1.14")) {
@@ -64,7 +61,6 @@ public class Main extends JavaPlugin {
 					updateChecker();
 					this.getCommand("magicitems").setExecutor(new MagicItemsCMD(this));
 					this.getCommand("magicitems").setTabCompleter(new TabCompleter1());
-					this.getCommand("magicitems").setTabCompleter(new TabCompleter2());
 					System.out.println("[MagicItems] Done! Enjoy the plugin!");
 				} else {
 					if (Bukkit.getVersion().contains("1.15")) {
@@ -72,7 +68,6 @@ public class Main extends JavaPlugin {
 						updateChecker();
 						this.getCommand("magicitems").setExecutor(new MagicItemsCMD(this));
 						this.getCommand("magicitems").setTabCompleter(new TabCompleter1());
-						this.getCommand("magicitems").setTabCompleter(new TabCompleter2());
 						System.out.println("[MagicItems] Done! Enjoy the plugin!");
 					} else {
 						getServer().getConsoleSender().sendMessage(ChatColor.RED + "[MagicItems] ERROR: Incompatible version! Please use version 1.13 - 1.16!");
