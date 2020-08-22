@@ -674,6 +674,7 @@ public class MagicItemsCMD implements CommandExecutor {
 		List<String> lore = new ArrayList<>();
 		lore.add("");
 		lore.add(ChatColor.BOLD + "" + ChatColor.ITALIC + "Magical Item");
+		lore.add(ChatColor.GOLD + "" + ChatColor.ITALIC + "Has silk touch");
 		meta.setLore(lore);
 
 		meta.addEnchant(Enchantment.DAMAGE_ARTHROPODS, Main.bane_of_arthropods, true);
