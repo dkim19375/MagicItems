@@ -106,23 +106,17 @@ public class Main extends JavaPlugin {
     }
     
     public String getPluginVersion2() {
-        new UpdateChecker(this, 82693).getLatestVersion(version -> {
-            this.returnValue2 = ChatColor.GOLD + "Newest version: " + ChatColor.GREEN + version;
-        });
+        new UpdateChecker(this, 82693).getLatestVersion(version -> this.returnValue2 = ChatColor.GOLD + "Newest version: " + ChatColor.GREEN + version);
     	return returnValue2;
     }
     
     public String getPluginVersion3() {
-        new UpdateChecker(this, 82693).getLatestVersion(version -> {
-            this.returnValue3 = ChatColor.GOLD + "Your version: " + ChatColor.GREEN + configVersion;
-        });
+        new UpdateChecker(this, 82693).getLatestVersion(version -> this.returnValue3 = ChatColor.GOLD + "Your version: " + ChatColor.GREEN + configVersion);
     	return returnValue3;
     }
     
     public String getPluginVersion4() {
-        new UpdateChecker(this, 82693).getLatestVersion(version -> {
-        	this.returnValue4 = ChatColor.GOLD + "Please Update Here: " + ChatColor.GREEN + configWebsite;
-        });
+        new UpdateChecker(this, 82693).getLatestVersion(version -> this.returnValue4 = ChatColor.GOLD + "Please Update Here: " + ChatColor.GREEN + configWebsite);
     	return returnValue4;
     }
 
@@ -203,7 +197,7 @@ public class Main extends JavaPlugin {
     public static int quick_charge;
     public static int soul_speed;
     
-    public boolean setEnchantLevels() {
+    public void setEnchantLevels() {
     	
         Main.protection = this.getConfig().getInt("Enchant-Levels.protection");
         Main.fire_protection = this.getConfig().getInt("Enchant-Levels.fire_protection");
@@ -242,8 +236,7 @@ public class Main extends JavaPlugin {
         Main.piercing = this.getConfig().getInt("Enchant-Levels.piercing");
         Main.quick_charge = this.getConfig().getInt("Enchant-Levels.quick_charge");
         Main.soul_speed = this.getConfig().getInt("Enchant-Levels.soul_speed");
-        
-        return true;
+
     }
 
 }

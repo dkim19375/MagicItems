@@ -1,5 +1,5 @@
 # IMPORTANT!!!!!! DO NOT CHANGE config-version!!!!!!!!!
-config-version: 1
+config-version: 1.1
 
 Reload:
   # The message will show in-game and in console
@@ -42,5 +42,5 @@ Enchant-Levels: #Max: 32767 or it will be a negative.
   loyalty: 32767
   multishot: 32767
   piercing: 32767
-  quick_charge: 32767
+  quick_charge: 5
   soul_speed: 10
