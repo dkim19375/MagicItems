@@ -13,39 +13,75 @@ import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
 
 public class MagicItemsCMD implements CommandExecutor {
-	
+
 	public Main main;
 
 	public MagicItemsCMD(Main main) {
 		this.main = main;
 	}
-	
+
+	public MagicItemsCMD() {
+	}
+
 	private boolean enchantstoggle = false;
 	private boolean attributestoggle = true;
 	private boolean vanishingtoggle = true;
 	private boolean bindingtoggle = false;
-	
-	public String getUpdateCheckS1() {		
-		return main.getPluginVersion1();
-	}
-	public String getUpdateCheckS2() {		
+
+	public String getUpdateCheckS1() { return main.getPluginVersion1(); }
+	public String getUpdateCheckS2() {
 		return main.getPluginVersion2();
 	}
-	public String getUpdateCheckS3() {		
+	public String getUpdateCheckS3() {
 		return main.getPluginVersion3();
 	}
-	public String getUpdateCheckS4() {		
+	public String getUpdateCheckS4() {
 		return main.getPluginVersion4();
 	}
-	public String ReloadConfig() {		
+	public String ReloadConfig() {
 		return main.getReloadConfig();
 	}
-	public String ReloadedConfig() {		
+	public String ReloadedConfig() {
 		return main.getReloadedConfig();
 	}
-	public String getConfigValue(String value) {		
-		return main.getConfigValue(value);
-	}
+	public int getProtection() { return main.getProtection(); }
+	public int getFire_protection() { return main.getFire_protection(); }
+	public int getFeather_falling() { return main.getFeather_falling(); }
+	public int getBlast_protection() { return main.getBlast_protection(); }
+	public int getProjectile_protection() { return main.getProjectile_protection(); }
+	public int getRespiration() { return main.getRespiration(); }
+	public int getAqua_affinity() { return main.getAqua_affinity(); }
+	public int getThorns() { return main.getThorns(); }
+	public int getDepth_strider() { return main.getDepth_strider(); }
+	public int getFrost_walker() { return main.getFrost_walker(); }
+	public int getBinding_curse() { return main.getBinding_curse(); }
+	public int getSharpness() { return main.getSharpness(); }
+	public int getSmite() { return main.getSmite(); }
+	public int getBane_of_arthropods() { return main.getBane_of_arthropods(); }
+	public int getKnockback() { return main.getKnockback(); }
+
+	public int getFire_aspect() { return main.getFire_aspect(); }
+	public int getLooting() { return main.getLooting(); }
+	public int getSweeping() { return main.getSweeping(); }
+	public int getEfficiency() { return main.getEfficiency(); }
+	public int getSilk_touch() { return main.getSilk_touch(); }
+	public int getUnbreaking() { return main.getUnbreaking(); }
+	public int getFortune() { return main.getFortune(); }
+	public int getPower() { return main.getPower(); }
+	public int getPunch() { return main.getPunch(); }
+	public int getFlame() { return main.getFlame(); }
+	public int getInfinity() { return main.getInfinity(); }
+	public int getLuck_of_the_sea() { return main.getLuck_of_the_sea(); }
+	public int getLure() { return main.getLure(); }
+	public int getMending() { return main.getMending(); }
+	public int getVanishing_curse() { return main.getVanishing_curse(); }
+	public int getChanneling() { return main.getChanneling(); }
+	public int getImpaling() { return main.getImpaling(); }
+	public int getLoyalty() { return main.getLoyalty(); }
+	public int getMultishot() { return main.getMultishot(); }
+	public int getPiercing() { return main.getPiercing(); }
+	public int getQuick_charge() { return main.getQuick_charge(); }
+	public int getSoul_speed() { return main.getSoul_speed(); }
 
 	void getItems(Player player, ItemStack getter) {
 		if (player.getInventory().firstEmpty() == -1) {
@@ -56,10 +92,10 @@ public class MagicItemsCMD implements CommandExecutor {
 			player.getInventory().addItem(getter);
 		}
 	}
-	
+
 	@Override
 	public boolean onCommand(CommandSender sender, Command cmd, String label, String[] args) {
-		if (label.equalsIgnoreCase("magicitems")) {
+		if (label.equalsIgnoreCase("magicitems") || label.equalsIgnoreCase("mi")) {
 			if (args.length == 0) {
 				sender.sendMessage(ChatColor.RED + "Too little arguments.");
 				sendHelpMessage(sender);
@@ -71,13 +107,13 @@ public class MagicItemsCMD implements CommandExecutor {
 				return true;
 			}
 			if (args.length == 2) {
-				if (args[0].equalsIgnoreCase("vanishing")) {	
-					
+				if (args[0].equalsIgnoreCase("vanishing")) {
+
 					if (args[1].equalsIgnoreCase("help")) {
 						sendVanishingHelpMsg(sender);
 						return true;
 					}
-					
+
 					if (args[1].equalsIgnoreCase("toggle")) {
 						if (sender.hasPermission("magicitems.attributes.status")) {
 							if (vanishingtoggle) {
@@ -90,13 +126,13 @@ public class MagicItemsCMD implements CommandExecutor {
 							return true;
 						} else {
 							sender.sendMessage(ChatColor.RED + "You do not have permission to run this command.");
-						}							
+						}
 					}
-					
+
 					if (args[1].equalsIgnoreCase("status")) {
 						if (sender.hasPermission("magicitems.vanishing.status")) {
 							if (vanishingtoggle) {
-								sender.sendMessage(ChatColor.GOLD + "The Vanishing Curse on Magic Tools: " + ChatColor.GREEN + " ON" + ChatColor.GOLD + "!");									
+								sender.sendMessage(ChatColor.GOLD + "The Vanishing Curse on Magic Tools: " + ChatColor.GREEN + " ON" + ChatColor.GOLD + "!");
 							} else {
 								sender.sendMessage(ChatColor.GOLD + "The Vanishing Curse on Magic Tools: " + ChatColor.RED + " OFF" + ChatColor.GOLD + "!");
 							}
@@ -104,24 +140,24 @@ public class MagicItemsCMD implements CommandExecutor {
 						}
 						sender.sendMessage(ChatColor.RED + "You do not have permission to run this command.");
 					}
-					
+
 					if (args[1].equalsIgnoreCase("?") || args[1].equalsIgnoreCase("help")) {
 						sendVanishingHelpMsg(sender);
 						return true;
 					}
-				
+
 					sender.sendMessage(ChatColor.RED + "Invalid arguments.");
 					sendVanishingHelpMsg(sender);
 					return true;
 				}
-				
-				if (args[0].equalsIgnoreCase("binding")) {	
-					
+
+				if (args[0].equalsIgnoreCase("binding")) {
+
 					if (args[1].equalsIgnoreCase("help")) {
 						sendBindingHelpMsg(sender);
 						return true;
 					}
-					
+
 					if (args[1].equalsIgnoreCase("toggle")) {
 						if (sender.hasPermission("magicitems.binding.status")) {
 							if (bindingtoggle) {
@@ -134,13 +170,13 @@ public class MagicItemsCMD implements CommandExecutor {
 							return true;
 						} else {
 							sender.sendMessage(ChatColor.RED + "You do not have permission to run this command.");
-						}							
+						}
 					}
-					
+
 					if (args[1].equalsIgnoreCase("status")) {
 						if (sender.hasPermission("magicitems.binding.status")) {
 							if (vanishingtoggle) {
-								sender.sendMessage(ChatColor.GOLD + "The Binding Curse on Magic Tools: " + ChatColor.GREEN + " ON" + ChatColor.GOLD + "!");									
+								sender.sendMessage(ChatColor.GOLD + "The Binding Curse on Magic Tools: " + ChatColor.GREEN + " ON" + ChatColor.GOLD + "!");
 							} else {
 								sender.sendMessage(ChatColor.GOLD + "The Binding Curse on Magic Tools: " + ChatColor.RED + " OFF" + ChatColor.GOLD + "!");
 							}
@@ -148,24 +184,24 @@ public class MagicItemsCMD implements CommandExecutor {
 						}
 						sender.sendMessage(ChatColor.RED + "You do not have permission to run this command.");
 					}
-					
+
 					if (args[1].equalsIgnoreCase("?") || args[1].equalsIgnoreCase("help")) {
  						sendBindingHelpMsg(sender);
 						return true;
 					}
-				
+
 					sender.sendMessage(ChatColor.RED + "Invalid arguments.");
 					sendBindingHelpMsg(sender);
 					return true;
 				}
-			
-				if (args[0].equalsIgnoreCase("enchants")) {	
-					
+
+				if (args[0].equalsIgnoreCase("enchants")) {
+
 					if (args[1].equalsIgnoreCase("help")) {
 						sendEnchantsHelpMsg(sender);
 						return true;
 					}
-					
+
 					if (args[1].equalsIgnoreCase("toggle")) {
 						if (sender.hasPermission("magicitems.enchants.toggle")) {
 							if (enchantstoggle) {
@@ -181,11 +217,11 @@ public class MagicItemsCMD implements CommandExecutor {
 						}
 
 					}
-					
+
 					if (args[1].equalsIgnoreCase("status")) {
 						if (sender.hasPermission("magicitems.enchants.status")) {
 							if (enchantstoggle) {
-								sender.sendMessage(ChatColor.GOLD + "Enchants on Magic Tools: " + ChatColor.GREEN + " ON" + ChatColor.GOLD + "!");									
+								sender.sendMessage(ChatColor.GOLD + "Enchants on Magic Tools: " + ChatColor.GREEN + " ON" + ChatColor.GOLD + "!");
 							} else {
 								sender.sendMessage(ChatColor.GOLD + "Enchants Curse on Magic Tools: " + ChatColor.RED + " OFF" + ChatColor.GOLD + "!");
 							}
@@ -195,24 +231,24 @@ public class MagicItemsCMD implements CommandExecutor {
 						}
 
 					}
-					
+
 					if (args[1].equalsIgnoreCase("?") || args[1].equalsIgnoreCase("help")) {
 						sendEnchantsHelpMsg(sender);
-						
+
 						return true;
 					}
-				
+
 					sender.sendMessage(ChatColor.RED + "Invalid arguments.");
 					sendEnchantsHelpMsg(sender);
 					return true;
 				}
-				if (args[0].equalsIgnoreCase("attributes")) {	
-					
+				if (args[0].equalsIgnoreCase("attributes")) {
+
 					if (args[1].equalsIgnoreCase("help")) {
 						sendAttributesHelpMsg(sender);
 						return true;
 					}
-					
+
 					if (args[1].equalsIgnoreCase("toggle")) {
 						if (sender.hasPermission("magicitems.attributes.toggle")) {
 							if (attributestoggle) {
@@ -227,11 +263,11 @@ public class MagicItemsCMD implements CommandExecutor {
 							sender.sendMessage(ChatColor.RED + "You do not have permission to run this command.");
 						}
 					}
-					
+
 					if (args[1].equalsIgnoreCase("status")) {
 						if (sender.hasPermission("magicitems.attributes.status")) {
 							if (attributestoggle) {
-								sender.sendMessage(ChatColor.GOLD + "Attributes on Magic Tools: " + ChatColor.GREEN + " ON" + ChatColor.GOLD + "!");									
+								sender.sendMessage(ChatColor.GOLD + "Attributes on Magic Tools: " + ChatColor.GREEN + " ON" + ChatColor.GOLD + "!");
 							} else {
 								sender.sendMessage(ChatColor.GOLD + "Attributes Curse on Magic Tools: " + ChatColor.RED + " OFF" + ChatColor.GOLD + "!");
 							}
@@ -240,12 +276,12 @@ public class MagicItemsCMD implements CommandExecutor {
 							sender.sendMessage(ChatColor.RED + "You do not have permission to run this command.");
 						}
 					}
-					
+
 					if (args[1].equalsIgnoreCase("?") || args[1].equalsIgnoreCase("help")) {
 						sendAttributesHelpMsg(sender);
 						return true;
 					}
-				
+
 					sender.sendMessage(ChatColor.RED + "Invalid arguments.");
 					sendAttributesHelpMsg(sender);
 				}
@@ -255,11 +291,6 @@ public class MagicItemsCMD implements CommandExecutor {
 				sender.sendMessage(ChatColor.GOLD + this.ReloadConfig());
 				this.ReloadConfig();
 				sender.sendMessage(ChatColor.GOLD + this.ReloadedConfig());
-				return true;
-			}
-			if (args[0].equalsIgnoreCase("testing")) {
-				if(args.length == 2)
-				sender.sendMessage(ChatColor.GOLD + this.getConfigValue(args[1]));
 				return true;
 			}
 			if (args[0].equalsIgnoreCase("version")) {
@@ -283,31 +314,33 @@ public class MagicItemsCMD implements CommandExecutor {
 					return true;
 				}
 				Player player = (Player) sender;
+				ItemManagers im = new ItemManagers();
+
 				player.sendMessage(ChatColor.GOLD + "You have been received the items.");
-				getItems(player, ItemManagers.getHelmet(vanishingtoggle, bindingtoggle, enchantstoggle, attributestoggle));
-				getItems(player, ItemManagers.getChestplate(vanishingtoggle, bindingtoggle, enchantstoggle, attributestoggle));
-				getItems(player, ItemManagers.getLeggings(vanishingtoggle, bindingtoggle, enchantstoggle, attributestoggle));
-				getItems(player, ItemManagers.getBoots(vanishingtoggle, bindingtoggle, enchantstoggle, attributestoggle));
-				getItems(player, ItemManagers.getSword(vanishingtoggle, bindingtoggle, enchantstoggle, attributestoggle));
-				getItems(player, ItemManagers.getAxe(vanishingtoggle, bindingtoggle, enchantstoggle, attributestoggle));
-				getItems(player, ItemManagers.getAxe2(vanishingtoggle, bindingtoggle, enchantstoggle, attributestoggle));
-				getItems(player, ItemManagers.getPickaxe(vanishingtoggle, bindingtoggle, enchantstoggle, attributestoggle));
-				getItems(player, ItemManagers.getPickaxe2(vanishingtoggle, bindingtoggle, enchantstoggle, attributestoggle));
-				getItems(player, ItemManagers.getShovel(vanishingtoggle, bindingtoggle, enchantstoggle, attributestoggle));
-				getItems(player, ItemManagers.getShovel2(vanishingtoggle, bindingtoggle, enchantstoggle, attributestoggle));
-				getItems(player, ItemManagers.getHoe(vanishingtoggle, bindingtoggle, enchantstoggle, attributestoggle));
+				getItems(player, im.getHelmet(vanishingtoggle, bindingtoggle, enchantstoggle, attributestoggle));
+				getItems(player, im.getChestplate(vanishingtoggle, bindingtoggle, enchantstoggle, attributestoggle));
+				getItems(player, im.getLeggings(vanishingtoggle, bindingtoggle, enchantstoggle, attributestoggle));
+				getItems(player, im.getBoots(vanishingtoggle, bindingtoggle, enchantstoggle, attributestoggle));
+				getItems(player, im.getSword(vanishingtoggle, bindingtoggle, enchantstoggle, attributestoggle));
+				getItems(player, im.getAxe(vanishingtoggle, bindingtoggle, enchantstoggle, attributestoggle));
+				getItems(player, im.getAxe2(vanishingtoggle, bindingtoggle, enchantstoggle, attributestoggle));
+				getItems(player, im.getPickaxe(vanishingtoggle, bindingtoggle, enchantstoggle, attributestoggle));
+				getItems(player, im.getPickaxe2(vanishingtoggle, bindingtoggle, enchantstoggle, attributestoggle));
+				getItems(player, im.getShovel(vanishingtoggle, bindingtoggle, enchantstoggle, attributestoggle));
+				getItems(player, im.getShovel2(vanishingtoggle, bindingtoggle, enchantstoggle, attributestoggle));
+				getItems(player, im.getHoe(vanishingtoggle, bindingtoggle, enchantstoggle, attributestoggle));
 				if (Bukkit.getVersion().contains("1.14") || Bukkit.getVersion().contains("1.15") || Bukkit.getVersion().contains("1.16")) {
-					getItems(player, ItemManagers.getCrossbow(vanishingtoggle, bindingtoggle, enchantstoggle, attributestoggle));
+					getItems(player, im.getCrossbow(vanishingtoggle, bindingtoggle, enchantstoggle, attributestoggle));
 				}
-				getItems(player, ItemManagers.getBow(vanishingtoggle, bindingtoggle, enchantstoggle, attributestoggle));
+				getItems(player, im.getBow(vanishingtoggle, bindingtoggle, enchantstoggle, attributestoggle));
 				for (int i = 0; i < 64; i++) {
-					getItems(player, ItemManagers.getArrows(enchantstoggle, attributestoggle));
+					getItems(player, im.getArrows(enchantstoggle, attributestoggle));
 				}
-				getItems(player, ItemManagers.getElytra(vanishingtoggle, bindingtoggle, enchantstoggle, attributestoggle));
+				getItems(player, im.getElytra(vanishingtoggle, bindingtoggle, enchantstoggle, attributestoggle));
 				for (int i = 0; i < 64; i++) {
-					getItems(player, ItemManagers.getRockets(vanishingtoggle, bindingtoggle, enchantstoggle, attributestoggle));
+					getItems(player, im.getRockets(vanishingtoggle, bindingtoggle, enchantstoggle, attributestoggle));
 				}
-				getItems(player, ItemManagers.getFlintSteel(vanishingtoggle, bindingtoggle, enchantstoggle, attributestoggle));
+				getItems(player, im.getFlintSteel(vanishingtoggle, bindingtoggle, enchantstoggle, attributestoggle));
 				return true;
 			}
 		}

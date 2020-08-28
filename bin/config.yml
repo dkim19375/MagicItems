@@ -1,5 +1,5 @@
 # IMPORTANT!!!!!! DO NOT CHANGE config-version!!!!!!!!!
-config-version: 1.1
+config-version: 1.2
 
 Reload:
   # The message will show in-game and in console
@@ -23,12 +23,12 @@ Enchant-Levels: #Max: 32767 or it will be a negative.
   bane_of_arthropods: 32767
   knockback: 1
   fire_aspect: 32767
-  looting: 1000
+  looting: 1000 # Don't put too high of a number!
   sweeping: 32767
   efficiency: 32767
   silk_touch: 1
   unbreaking: 32767
-  fortune: 32767
+  fortune: 1000 # Don't put too high of a number!
   power: 32767
   punch: 1
   flame: 32767
@@ -42,5 +42,5 @@ Enchant-Levels: #Max: 32767 or it will be a negative.
   loyalty: 32767
   multishot: 32767
   piercing: 32767
-  quick_charge: 5
+  quick_charge: 5 # Max: 5. Putting anything higher will break the crossbow!
   soul_speed: 10
