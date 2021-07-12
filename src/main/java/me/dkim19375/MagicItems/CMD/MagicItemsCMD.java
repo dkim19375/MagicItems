@@ -20,9 +20,6 @@ public class MagicItemsCMD implements CommandExecutor {
 		this.main = main;
 	}
 
-	public MagicItemsCMD() {
-	}
-
 	private boolean enchantstoggle = false;
 	private boolean attributestoggle = true;
 	private boolean vanishingtoggle = true;
@@ -314,7 +311,7 @@ public class MagicItemsCMD implements CommandExecutor {
 					return true;
 				}
 				Player player = (Player) sender;
-				ItemManagers im = new ItemManagers();
+				ItemManagers im = new ItemManagers(main);
 
 				player.sendMessage(ChatColor.GOLD + "You have been received the items.");
 				getItems(player, im.getHelmet(vanishingtoggle, bindingtoggle, enchantstoggle, attributestoggle));

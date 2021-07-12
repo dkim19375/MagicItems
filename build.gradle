@@ -1,0 +1,52 @@
+plugins {
+    id 'com.github.johnrengelman.shadow' version '6.1.0'
+    id 'java'
+}
+
+group 'me.dkim19375'
+version '1.2.0'
+
+sourceCompatibility = targetCompatibility = JavaVersion.VERSION_1_8
+
+repositories {
+    mavenCentral()
+    mavenLocal()
+    maven { url = 'https://oss.sonatype.org/content/repositories/snapshots' }
+    maven { url = 'https://hub.spigotmc.org/nexus/content/repositories/snapshots/' }
+    maven { url = 'https://jitpack.io' }
+    maven { url = 'https://repo.extendedclip.com/content/repositories/placeholderapi/' }
+}
+
+dependencies {
+    compileOnly 'org.spigotmc:spigot-api:1.16.5-R0.1-SNAPSHOT'
+    compileOnly 'org.jetbrains:annotations:20.1.0'
+}
+
+processResources {
+    from(sourceSets.main.resources.srcDirs) {
+        expand 'pluginVersion': version
+    }
+}
+
+task copyFile(type: Copy) {
+    if (!new File('../.TestServers/1.16/plugins/').exists()) {
+        return
+    }
+    new File('../.TestServers/1.16/plugins/' + project.name + '-' + project.version + '-all.jar').delete()
+    from('build/libs/' + project.name + '-' + project.version + '-all.jar')
+    into('../.TestServers/1.16/plugins')
+    include('*.jar')
+}
+
+task deleteAll() {
+    for (File file : new File('../.TestServers/1.16/plugins').listFiles()) {
+        if (file.name.startsWith(project.name)) {
+            file.delete()
+        }
+    }
+    for (File file : new File('../.TestServers/1.8/plugins').listFiles()) {
+        if (file.name.startsWith(project.name)) {
+            file.delete()
+        }
+    }
+}

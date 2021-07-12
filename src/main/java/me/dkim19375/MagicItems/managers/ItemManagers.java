@@ -1,6 +1,7 @@
 package me.dkim19375.MagicItems.managers;
 
 import me.dkim19375.MagicItems.CMD.MagicItemsCMD;
+import me.dkim19375.MagicItems.Main;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.Material;
@@ -13,13 +14,17 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class ItemManagers {
+    MagicItemsCMD mi;
 
-    MagicItemsCMD mi = new MagicItemsCMD();
+    public ItemManagers(Main main) {
+        mi = new MagicItemsCMD(main);
+    }
+    private final boolean useNetherite = Bukkit.getVersion().contains("1.16") || Bukkit.getVersion().contains("1.17");
 
     public ItemStack getHelmet(boolean vanishingtoggle, boolean bindingtoggle, boolean enchantstoggle, boolean attributestoggle) {
 
         Material mat;
-        if (Bukkit.getVersion().contains("1.16")) {
+        if (useNetherite) {
             mat = Material.NETHERITE_HELMET;
         } else mat = Material.DIAMOND_HELMET;
 
@@ -69,7 +74,7 @@ public class ItemManagers {
     public ItemStack getChestplate(boolean vanishingtoggle, boolean bindingtoggle, boolean enchantstoggle, boolean attributestoggle) {
 
         Material mat;
-        if (Bukkit.getVersion().contains("1.16")) {
+        if (useNetherite) {
             mat = Material.NETHERITE_CHESTPLATE;
         } else mat = Material.DIAMOND_CHESTPLATE;
 
@@ -113,7 +118,7 @@ public class ItemManagers {
     public ItemStack getLeggings(boolean vanishingtoggle, boolean bindingtoggle, boolean enchantstoggle, boolean attributestoggle) {
 
         Material mat;
-        if (Bukkit.getVersion().contains("1.16")) {
+        if (useNetherite) {
             mat = Material.NETHERITE_LEGGINGS;
         } else mat = Material.DIAMOND_LEGGINGS;
 
@@ -158,7 +163,7 @@ public class ItemManagers {
     public ItemStack getBoots(boolean vanishingtoggle, boolean bindingtoggle, boolean enchantstoggle, boolean attributestoggle) {
 
         Material mat;
-        if (Bukkit.getVersion().contains("1.16")) {
+        if (useNetherite) {
             mat = Material.NETHERITE_BOOTS;
         } else mat = Material.DIAMOND_BOOTS;
 
@@ -178,7 +183,7 @@ public class ItemManagers {
         if (mi.getFeather_falling() != 0) {
             meta.addEnchant(Enchantment.PROTECTION_FALL, mi.getFeather_falling(), true);
         }
-        if (Bukkit.getVersion().contains("1.16") && mi.getSoul_speed() != 0) {
+        if (useNetherite && mi.getSoul_speed() != 0) {
             meta.addEnchant(Enchantment.SOUL_SPEED, mi.getSoul_speed(), true);
         }
 
@@ -195,7 +200,7 @@ public class ItemManagers {
     public ItemStack getSword(boolean vanishingtoggle, boolean bindingtoggle, boolean enchantstoggle, boolean attributestoggle) {
 
         Material mat;
-        if (Bukkit.getVersion().contains("1.16")) {
+        if (useNetherite) {
             mat = Material.NETHERITE_SWORD;
         } else mat = Material.DIAMOND_SWORD;
 
@@ -230,7 +235,7 @@ public class ItemManagers {
     public ItemStack getAxe(boolean vanishingtoggle, boolean bindingtoggle, boolean enchantstoggle, boolean attributestoggle) {
 
         Material mat;
-        if (Bukkit.getVersion().contains("1.16")) {
+        if (useNetherite) {
             mat = Material.NETHERITE_AXE;
         } else mat = Material.DIAMOND_AXE;
 
@@ -263,7 +268,7 @@ public class ItemManagers {
     public ItemStack getAxe2(boolean vanishingtoggle, boolean bindingtoggle, boolean enchantstoggle, boolean attributestoggle) {
 
         Material mat;
-        if (Bukkit.getVersion().contains("1.16")) {
+        if (useNetherite) {
             mat = Material.NETHERITE_AXE;
         } else mat = Material.DIAMOND_AXE;
 
@@ -297,7 +302,7 @@ public class ItemManagers {
     public ItemStack getPickaxe(boolean vanishingtoggle, boolean bindingtoggle, boolean enchantstoggle, boolean attributestoggle) {
 
         Material mat;
-        if (Bukkit.getVersion().contains("1.16")) {
+        if (useNetherite) {
             mat = Material.NETHERITE_PICKAXE;
         } else mat = Material.DIAMOND_PICKAXE;
 
@@ -330,7 +335,7 @@ public class ItemManagers {
     public ItemStack getPickaxe2(boolean vanishingtoggle, boolean bindingtoggle, boolean enchantstoggle, boolean attributestoggle) {
 
         Material mat;
-        if (Bukkit.getVersion().contains("1.16")) {
+        if (useNetherite) {
             mat = Material.NETHERITE_PICKAXE;
         } else mat = Material.DIAMOND_PICKAXE;
 
@@ -364,7 +369,7 @@ public class ItemManagers {
     public ItemStack getHoe(boolean vanishingtoggle, boolean bindingtoggle, boolean enchantstoggle, boolean attributestoggle) {
 
         Material mat;
-        if (Bukkit.getVersion().contains("1.16")) {
+        if (useNetherite) {
             mat = Material.NETHERITE_HOE;
         } else mat = Material.DIAMOND_HOE;
 
@@ -397,7 +402,7 @@ public class ItemManagers {
     public ItemStack getShovel(boolean vanishingtoggle, boolean bindingtoggle, boolean enchantstoggle, boolean attributestoggle) {
 
         Material mat;
-        if (Bukkit.getVersion().contains("1.16")) {
+        if (useNetherite) {
             mat = Material.NETHERITE_SHOVEL;
         } else mat = Material.DIAMOND_SHOVEL;
 
@@ -430,7 +435,7 @@ public class ItemManagers {
     public ItemStack getShovel2(boolean vanishingtoggle, boolean bindingtoggle, boolean enchantstoggle, boolean attributestoggle) {
 
         Material mat;
-        if (Bukkit.getVersion().contains("1.16")) {
+        if (useNetherite) {
             mat = Material.NETHERITE_SHOVEL;
         } else mat = Material.DIAMOND_SHOVEL;
 
@@ -609,7 +614,7 @@ public class ItemManagers {
         return meta;
     }
 
-    private ItemMeta getBasicArmorEnchants(ItemMeta meta) {
+    private void getBasicArmorEnchants(ItemMeta meta) {
         if (mi.getBlast_protection() != 0) {
             meta.addEnchant(Enchantment.PROTECTION_EXPLOSIONS, mi.getBlast_protection(), true);
         }
@@ -628,7 +633,6 @@ public class ItemManagers {
         if (mi.getThorns() != 0) {
             meta.addEnchant(Enchantment.THORNS, mi.getThorns(), true);
         }
-        return meta;
     }
 
     private List<String> addLore(boolean hasSilk) {
