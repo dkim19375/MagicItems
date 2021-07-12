@@ -1,16 +1,37 @@
 plugins {
     id 'com.github.johnrengelman.shadow' version '6.1.0'
-    id 'java'
+    id 'org.jetbrains.kotlin.jvm' version '1.5.20'
+    id 'net.minecrell.licenser' version '0.4.1'
+    id 'io.github.slimjar' version '1.2.1'
 }
 
 group 'me.dkim19375'
-version '1.2.0'
+version '2.0.0'
 
-sourceCompatibility = targetCompatibility = JavaVersion.VERSION_1_8
+compileKotlin {
+    kotlinOptions.jvmTarget = '1.8'
+}
+
+license {
+    header = rootProject.file("LICENSE")
+    include "**/*.kt"
+}
+
+final basePackage = 'me.dkim19375.magicitems.libs'
+
+slimJar {
+    relocate 'kotlin', "${basePackage}.kotlin"
+    relocate 'kotlinx', "${basePackage}.kotlinx"
+    relocate 'reactor', "${basePackage}.reactor"
+    relocate 'io.github.slimjar', "${basePackage}.slimjar"
+    relocate 'org.reactivestreams', "${basePackage}.reactivestreams"
+
+    relocate 'me.dkim19375.dkimbukkitcore', "${basePackage}.dkimbukkitcore"
+    relocate 'me.dkim19375.dkimcore', "${basePackage}.dkimcore"
+}
 
 repositories {
     mavenCentral()
-    mavenLocal()
     maven { url = 'https://oss.sonatype.org/content/repositories/snapshots' }
     maven { url = 'https://hub.spigotmc.org/nexus/content/repositories/snapshots/' }
     maven { url = 'https://jitpack.io' }
@@ -20,6 +41,16 @@ repositories {
 dependencies {
     compileOnly 'org.spigotmc:spigot-api:1.16.5-R0.1-SNAPSHOT'
     compileOnly 'org.jetbrains:annotations:20.1.0'
+    implementation('io.github.dkim19375:dkim-bukkit-core:3.1.2') {
+        exclude group: 'org.jetbrains.kotlin'
+        exclude group: 'org.jetbrains.kotlinx'
+    }
+    implementation('org.jetbrains.kotlin:kotlin-stdlib-jdk8:1.5.20') {
+        exclude module: 'annotations'
+    }
+
+    slim 'org.jetbrains.kotlinx:kotlinx-coroutines-core:1.5.1'
+    slim 'org.jetbrains.kotlinx:kotlinx-coroutines-reactor:1.5.1'
 }
 
 processResources {
@@ -50,3 +81,5 @@ task deleteAll() {
         }
     }
 }
+
+tasks.jar.dependsOn licenseFormat

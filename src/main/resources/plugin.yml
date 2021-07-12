@@ -1,4 +1,4 @@
-main: me.dkim19375.MagicItems.Main
+main: me.dkim19375.magicitems.MagicItems
 name: MagicItems
 version: ${pluginVersion}
 description: Get some OP items with one command!
@@ -6,41 +6,23 @@ author: dkim19375
 api-version: 1.13
 website: https://www.spigotmc.org/resources/magicitems.82693/updates
 commands:
-  blahtest:
-    description: test
-    usage: /blahtest location
-  testing:
-    description: testing command
-    usage: /testing
   magicitems:
     description: main command
+    permission: magicitems.command
     aliases: mi
     usage: /magicitems help
 permissions:
+  magicitems.reload:
+    description: Reload the config files
   magicitems.give:
     description: Able to give items
-    default: op
+  magicitems.version:
+    description: Get version and check updates
   magicitems.enchants:
     description: Can use /magicitems enchants
-    default: op
-    children:
-      magicitems.enchants.toggle: true
-      magicitems.enchants.status: true
   magicitems.attributes:
     description: Can use /magicitems attibutes
-    default: op
-    children:
-      magicitems.attibutes.toggle: true
-      magicitems.attibutes.status: true
   magicitems.vanishing:
     description: Can use /magicitems vanishing
-    default: op
-    children:
-      magicitems.vanishing.toggle: true
-      magicitems.vanishing.status: true
   magicitems.binding:
     description: Can use /magicitems binding
-    default: op
-    children:
-      magicitems.binding.toggle: true
-      magicitems.binding.status: true
