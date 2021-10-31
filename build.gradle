@@ -50,7 +50,7 @@ dependencies {
     }
 
     slim 'org.jetbrains.kotlinx:kotlinx-coroutines-core:1.5.1'
-    slim 'org.jetbrains.kotlinx:kotlinx-coroutines-reactor:1.5.1'
+    slim 'org.jetbrains.kotlinx:kotlinx-coroutines-reactor:1.5.2'
 }
 
 processResources {
