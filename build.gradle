@@ -51,7 +51,7 @@ dependencies {
         exclude group: 'org.jetbrains.kotlin'
         exclude group: 'org.jetbrains.kotlinx'
     }
-    implementation('org.jetbrains.kotlin:kotlin-stdlib-jdk8:1.7.10') {
+    implementation('org.jetbrains.kotlin:kotlin-stdlib-jdk8:1.8.20') {
         exclude module: 'annotations'
     }
 
